@@ -1,12 +1,75 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React, { useEffect } from 'react';
+import NavBar from '@/components/NavBar';
+import HeroSection from '@/sections/HeroSection';
+import AboutSection from '@/sections/AboutSection';
+import SkillsSection from '@/sections/SkillsSection';
+import ProjectsSection from '@/sections/ProjectsSection';
+import ExperienceSection from '@/sections/ExperienceSection';
+import ContactSection from '@/sections/ContactSection';
+import Footer from '@/components/Footer';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+const Index: React.FC = () => {
+  useEffect(() => {
+    // Initialize scroll animations
+    const sections = document.querySelectorAll('.reveal');
+    
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 80%',
+        onEnter: () => section.classList.add('active'),
+        onLeave: () => section.classList.remove('active'),
+        onEnterBack: () => section.classList.add('active'),
+        onLeaveBack: () => section.classList.remove('active'),
+      });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (!targetId) return;
+        
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: {
+            y: targetId,
+            offsetY: 20
+          },
+          ease: 'power3.inOut'
+        });
+      });
+    });
+    
+    return () => {
+      // Clean up ScrollTrigger instances
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col">
+      <NavBar />
+      
+      <main className="flex-grow">
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <ExperienceSection />
+        <ContactSection />
+      </main>
+      
+      <Footer />
     </div>
   );
 };
