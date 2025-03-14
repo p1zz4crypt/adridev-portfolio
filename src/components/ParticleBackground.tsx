@@ -52,7 +52,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     }));
     
     // Animation loop
-    gsap.ticker.add(() => {
+    const tickerFunction = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particlesRef.current.forEach(particle => {
@@ -76,11 +76,14 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       
       // Connect particles that are close to each other
       connectParticles(ctx);
-    });
+    };
+    
+    // Add the ticker function to GSAP
+    gsap.ticker.add(tickerFunction);
     
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      gsap.ticker.remove();
+      gsap.ticker.remove(tickerFunction);
     };
   }, [particleCount, particleColor]);
   
