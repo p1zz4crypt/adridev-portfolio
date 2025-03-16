@@ -11,15 +11,18 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import WaveAnimation from '@/components/WaveAnimation';
 
+import Bots from "../assets/img/bots.png"
+import Astro from "../assets/img/astro2.png"
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  
+
   useEffect(() => {
     if (!sectionRef.current || !formRef.current) return;
-    
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         formRef.current,
@@ -37,7 +40,7 @@ const ContactSection: React.FC = () => {
         }
       );
     });
-    
+
     return () => ctx.revert();
   }, []);
 
@@ -47,21 +50,21 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 relative bg-background">
+    <section id="contact" ref={sectionRef} className="bg-gradient-section-6 dark:bg-gradient-section-6-dark py-24 relative">
       <div className="section-container relative z-10">
-        <SectionTitle 
-          subtitle="Get In Touch"
-          title="Let's Work Together"
-          description="Interested in working together? Feel free to reach out for collaboration or just to say hello!"
+        <SectionTitle
+          subtitle="Contáctame"
+          title="Trabajemos juntos"
+          description="¿Tienes un proyecto en mente, una idea innovadora o simplemente quieres charlar? ¡No dudes en contactarme! Estoy aquí para colaborar y crear algo increíble juntos."
           center={true}
         />
-        
+
         <div className="grid md:grid-cols-2 gap-12 mt-16">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-            
+            <h3 className="text-2xl font-bold mb-6">Información de contacto</h3>
+
             <div className="space-y-6">
-              <motion.div 
+              <motion.div
                 className="flex items-start gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -73,13 +76,16 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <a href="mailto:contact@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    contact@example.com
+                  <a
+                    href="mailto:a.rosasfig@gmail.com?subject=Consulta%20desde%20tu%20portafolio&body=Hola%20Adriana,%20vi%20tu%20portafolio%20y%20me%20gustaría%20contactarte."
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    a.rosasfig@gmail.com
                   </a>
                 </div>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex items-start gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -90,14 +96,17 @@ const ContactSection: React.FC = () => {
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Phone</h4>
-                  <a href="tel:+11234567890" className="text-muted-foreground hover:text-primary transition-colors">
-                    +1 (123) 456-7890
+                  <h4 className="font-medium">Whatsapp</h4>
+                  <a href="https://wa.me/525587945478" className="text-muted-foreground hover:text-primary transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    (+52) 5587945478
                   </a>
                 </div>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex items-start gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -108,19 +117,20 @@ const ContactSection: React.FC = () => {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-medium">Location</h4>
+                  <h4 className="font-medium">Ubicación</h4>
                   <p className="text-muted-foreground">
-                    San Francisco, CA, USA
+                    CDMX
                   </p>
                 </div>
               </motion.div>
             </div>
-            
+
             <div className="mt-12">
-              <h3 className="text-2xl font-bold mb-6">Follow Me</h3>
+              <h3 className="text-2xl font-bold mb-6">Sígueme</h3>
               <div className="flex gap-4">
                 <motion.a
-                  href="#"
+                  href="https://www.instagram.com/adri_rouz/"
+                  target='_blank'
                   className="p-3 bg-secondary text-foreground rounded-full hover-scale"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
@@ -130,17 +140,8 @@ const ContactSection: React.FC = () => {
                   </svg>
                 </motion.a>
                 <motion.a
-                  href="#"
-                  className="p-3 bg-secondary text-foreground rounded-full hover-scale"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05 1.883 0 3.616-.636 5.001-1.721-1.771-.037-3.255-1.197-3.767-2.793.249.037.499.062.761.062.361 0 .724-.05 1.061-.137-1.847-.374-3.23-1.995-3.23-3.953v-.05c.537.299 1.16.486 1.82.511-1.086-.722-1.801-1.957-1.801-3.354 0-.748.199-1.434.548-2.032 1.983 2.443 4.964 4.04 8.306 4.215-.062-.3-.1-.611-.1-.923 0-2.22 1.796-4.028 4.028-4.028 1.16 0 2.207.486 2.943 1.272.91-.175 1.782-.512 2.556-.973-.299.935-.936 1.721-1.771 2.22.811-.088 1.597-.312 2.319-.624-.548.799-1.234 1.509-2.019 2.083z" />
-                  </svg>
-                </motion.a>
-                <motion.a
-                  href="#"
+                  href="https://www.linkedin.com/in/adriana-rosasf/"
+                  target='_blank'
                   className="p-3 bg-secondary text-foreground rounded-full hover-scale"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
@@ -150,7 +151,8 @@ const ContactSection: React.FC = () => {
                   </svg>
                 </motion.a>
                 <motion.a
-                  href="#"
+                  href="https://github.com/p1zz4crypt"
+                  target='_blank'
                   className="p-3 bg-secondary text-foreground rounded-full hover-scale"
                   whileHover={{ y: -5 }}
                   transition={{ duration: 0.3 }}
@@ -162,67 +164,17 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
-          
-          <form 
+
+          <form
             ref={formRef}
             onSubmit={handleSubmit}
             className="glass-card p-8 rounded-xl"
           >
-            <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
-            
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Your Name</Label>
-                  <Input 
-                    id="name"
-                    placeholder="John Doe"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Your Email</Label>
-                  <Input 
-                    id="email"
-                    type="email"
-                    placeholder="example@domain.com"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input 
-                  id="subject"
-                  placeholder="How can I help you?"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea 
-                  id="message"
-                  placeholder="Write your message here..."
-                  rows={5}
-                  required
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                size="lg" 
-                className="w-full bg-primary hover:bg-primary/90 text-white"
-              >
-                <Send className="mr-2 h-4 w-4" />
-                Send Message
-              </Button>
-            </div>
+            <img src={Bots} alt="bot" />
           </form>
         </div>
       </div>
-      
+
       <WaveAnimation className="z-0" />
     </section>
   );

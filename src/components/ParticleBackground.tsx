@@ -85,6 +85,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       window.removeEventListener('resize', resizeCanvas);
       gsap.ticker.remove(tickerFunction);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [particleCount, particleColor]);
   
   const connectParticles = (ctx: CanvasRenderingContext2D) => {
@@ -115,7 +116,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 -z-10 ${className}`}
+      className={`absolute inset-0 -z-100 ${className}`}
     />
   );
 };

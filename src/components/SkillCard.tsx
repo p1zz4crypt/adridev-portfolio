@@ -22,7 +22,6 @@ const SkillCard: React.FC<SkillCardProps> = ({
         "glass-card p-6 flex flex-col items-center text-center h-full",
         className
       )}
-      whileHover={{ y: -5, transition: { duration: 0.3 } }}
     >
       <div className="mb-4 text-primary">{icon}</div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>

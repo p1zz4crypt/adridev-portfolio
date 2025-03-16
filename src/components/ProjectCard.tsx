@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
@@ -13,6 +12,7 @@ interface ProjectCardProps {
   githubUrl?: string;
   reversed?: boolean;
   className?: string;
+  onLiveDemoClick: () => void; // Definición correcta de la prop
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -24,6 +24,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   githubUrl,
   reversed = false,
   className,
+  onLiveDemoClick, // Recibimos la prop
 }) => {
   return (
     <motion.div
@@ -53,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className={reversed ? 'md:order-1' : ''}>
         <h3 className="text-2xl md:text-3xl font-semibold mb-3">{title}</h3>
         <p className="text-muted-foreground mb-4">{description}</p>
-        
+
         <div className="flex flex-wrap gap-2 mb-6">
           {tags.map((tag) => (
             <span
@@ -64,20 +65,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </span>
           ))}
         </div>
-        
+
         <div className="flex gap-4">
           {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onLiveDemoClick} // Usamos la función onLiveDemoClick
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
             >
               <ExternalLink size={18} />
               <span>Live Demo</span>
-            </a>
+            </button>
           )}
-          
+
           {githubUrl && (
             <a
               href={githubUrl}

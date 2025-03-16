@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				display: ['Manrope', 'sans-serif'],
+				sans: ['Comfortaa', 'sans-serif'],
+				display: ['Comfortaa', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
 			},
 			colors: {
@@ -81,6 +81,21 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-section-1': 'linear-gradient(0deg, rgba(213, 193, 240, 1) 41%, rgba(236, 236, 236, 1) 93%)',
+				'gradient-section-2': 'linear-gradient(0deg, rgba(255, 242, 215, 1) 11%, rgba(213, 193, 240, 1) 84%)',
+				'gradient-section-3': 'linear-gradient(0deg, rgba(217,248,249,1) 0%, rgba(255, 242, 215,1) 100%)',
+				'gradient-section-4': 'linear-gradient(0deg, rgba(202,245,255,1) 0%, rgba(217,248,249,1) 100%)',
+				'gradient-section-5': 'linear-gradient(0deg, rgba(194,249,224,1) 0%, rgba(202,245,255,1) 100%)',
+				'gradient-section-6': 'linear-gradient(0deg, rgba(236, 236, 236, 1) 0%, rgba(194,249,224,1) 100%)',
+
+				'gradient-section-1-dark': 'linear-gradient(0deg, rgba(48,18,90, 1) 41%, rgba(0,0,0, 1) 93%)',
+				'gradient-section-2-dark': 'linear-gradient(0deg, rgba(160, 143, 105, 1) 41%, rgba(48,18,90, 1) 93%)',
+				'gradient-section-3-dark': 'linear-gradient(0deg, rgba(49, 90, 92, 1) 41%, rgba(160, 143, 105, 1) 93%)',
+				'gradient-section-4-dark': 'linear-gradient(0deg, rgba(57, 15, 49, 1) 41%, rgba(49, 90, 92, 1) 93%)',
+				'gradient-section-5-dark': 'linear-gradient(0deg, rgba(94, 63, 48, 1) 41%, rgba(57, 15, 49, 1) 93%)',
+				'gradient-section-6-dark': 'linear-gradient(0deg, rgba(0,0,0, 1) 41%, rgba(94, 63, 48, 1) 93%)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -164,5 +179,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	// plugins: [require("tailwindcss-animate")],
 } satisfies Config;
