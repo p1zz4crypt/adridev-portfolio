@@ -53,7 +53,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
       <div className={reversed ? 'md:order-1' : ''}>
         <h3 className="text-2xl md:text-3xl font-semibold mb-3">{title}</h3>
-        <p className="text-muted-foreground mb-4">{description}</p>
+        <p className="text-muted-foreground mb-4 text-foreground dark:text-foreground">{description}</p>
 
         <div className="flex flex-wrap gap-2 mb-6">
           {tags.map((tag) => (
@@ -72,8 +72,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               onClick={onLiveDemoClick} // Usamos la función onLiveDemoClick
               className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
             >
-              <ExternalLink size={18} />
-              <span>Live Demo</span>
+           
+              <span className="font-semibold">+ info</span>
             </button>
           )}
 

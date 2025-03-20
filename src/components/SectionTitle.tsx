@@ -37,7 +37,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       )}
       <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
       {description && (
-        <p className="text-muted-foreground max-w-3xl">
+        <p className="text-muted-foreground max-w-3xl text-foreground dark:text-foreground">
           {description}
         </p>
       )}

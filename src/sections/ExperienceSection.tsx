@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ExperienceSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
-  
+
   const experiences = [
     {
       period: '01/2024 – 12/2025 ',
@@ -32,14 +32,14 @@ const ExperienceSection: React.FC = () => {
       description: 'Maqueté sitios web y desarrollé interfaces visuales y webApps usando Vue.js. / Gestioné el estado de la aplicación mediante Vuex para optimizar su rendimiento. / Implementé Vuetify y CSS personalizado, integrando APIs y manejando datos con Firebase. / Desarrollé funciones CRUD y visualicé datos a través de gráficos interactivos.'
     },
   ];
-  
+
   useEffect(() => {
     if (!sectionRef.current || !timelineRef.current) return;
-    
+
     const ctx = gsap.context(() => {
       // Animate timeline line
       const line = timelineRef.current?.querySelector('.timeline-line');
-      
+
       if (line) {
         gsap.fromTo(
           line,
@@ -58,58 +58,58 @@ const ExperienceSection: React.FC = () => {
         );
       }
     });
-    
+
     return () => ctx.revert();
   }, []);
 
   return (
     <section id="experience" ref={sectionRef} className="bg-gradient-section-5 dark:bg-gradient-section-5-dark ">
       <div className='section-container py-24 '>
-      <SectionTitle 
-        subtitle="Experiencia"
-        title="Mi viaje profesional"
-        description="Una línea de tiempo de mi carrera y crecimiento profesional en el desarrollo frontend."
-        center={true}
-      />
-      
-      <div ref={timelineRef} className="mt-16 relative">
-        {/* Timeline line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-border timeline-line transform md:-translate-x-1/2"></div>
-        
-        {/* Experience items */}
-        <div className="space-y-12">
-          {experiences.map((exp, index) => (
-            <div key={index} className={`relative grid md:grid-cols-2 gap-8 md:gap-12 pl-3 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
-              <RevealOnScroll
-                direction={index % 2 === 0 ? 'right' : 'left'}
-                className='md:text-right'
+        <SectionTitle
+          subtitle="Experiencia"
+          title="Mi viaje profesional"
+          description="Una línea de tiempo de mi carrera y crecimiento profesional en el desarrollo frontend."
+          center={true}
+        />
+
+        <div ref={timelineRef} className="mt-16 relative">
+          {/* Timeline line */}
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-border timeline-line transform md:-translate-x-1/2"></div>
+
+          {/* Experience items */}
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <div key={index} className={`relative grid md:grid-cols-2 gap-8 md:gap-12 pl-3 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                <RevealOnScroll
+                  direction={index % 2 === 0 ? 'right' : 'left'}
+                  className='md:text-right'
                 // className={`md:text-right ${index % 2 === 1 ? 'md:col-start-2' : ''}`}
 
 
 
-              >
-                <div className="mb-1 text-primary font-medium">
-                  {exp.period}
-                </div>
-                <h3 className="text-xl font-bold">{exp.title}</h3>
-                <div className="text-muted-foreground mb-4">{exp.company}</div>
-              </RevealOnScroll>
-              
-              {/* Timeline dot */}
-              <div className="absolute left-0 md:left-1/2 top-1 w-4 h-4 bg-primary rounded-full transform -translate-x-1/2 md:-translate-x-1/2 z-10"></div>
-              
-              <RevealOnScroll
-                direction={index % 2 === 1 ? 'right' : 'left'}
-                className={index % 2 === 0 ? 'md:col-start-2' : ''}
-              >
-                <p className="text-muted-foreground" style={{ width: "80%"}}>
-                  {exp.description}
-                </p>
-              </RevealOnScroll>
-            </div>
-          ))}
+                >
+                  <div className="mb-1 text-primary font-medium">
+                    {exp.period}
+                  </div>
+                  <h3 className="text-xl font-bold">{exp.title}</h3>
+                  <div className="text-muted-foreground mb-4">{exp.company}</div>
+                </RevealOnScroll>
+
+                {/* Timeline dot */}
+                <div className="absolute left-0 md:left-1/2 top-1 w-4 h-4 bg-primary rounded-full transform -translate-x-1/2 md:-translate-x-1/2 z-10"></div>
+
+                <RevealOnScroll
+                  direction={index % 2 === 1 ? 'right' : 'left'}
+                  className={index % 2 === 0 ? 'md:col-start-2' : ''}
+                >
+                  <p className="text-muted-foreground text-foreground dark:text-foreground" style={{ width: "80%" }}>
+                    {exp.description}
+                  </p>
+                </RevealOnScroll>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

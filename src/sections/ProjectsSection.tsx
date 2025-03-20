@@ -6,24 +6,24 @@ import SectionTitle from '@/components/SectionTitle';
 import ProjectCard from '@/components/ProjectCard';
 import ProjectModal from '@/components/ProjectModal';
 // Imganes
-import MaxCluster from "../assets/img/projects/maxc/mc.png"
-import MaxCluster2 from "../assets/img/projects/maxc/mc2.png"
-import MaxPortada from "../assets/img/projects/maxc/maxc.jpg"
-import Docu from "../assets/img/projects/maxc/docu.jpg"
-import Docu2 from "../assets/img/projects/maxc/docu2.jpg"
-import Capacitacion from "../assets/img/projects/maxc/cap.jpg"
+import MaxCluster from "../assets/img/projects/maxc/mc.webp"
+import MaxCluster2 from "../assets/img/projects/maxc/mc2.webp"
+import MaxPortada from "../assets/img/projects/maxc/maxc.webp"
+import Docu from "../assets/img/projects/maxc/docu.webp"
+import Docu2 from "../assets/img/projects/maxc/docu2.webp"
+import Capacitacion from "../assets/img/projects/maxc/cap.webp"
 
-import TiendaLegal from "../assets/img/projects/eterna/backfull.png"
-import TiendaLegal2 from  "../assets/img/projects/eterna/tl3.jpg"
-import TiendaLegal3 from  "../assets/img/projects/eterna/tl1.jpg"
-import TiendaLegal4 from  "../assets/img/projects/eterna/tl2.jpg"
+import TiendaLegal from "../assets/img/projects/eterna/backfull.webp"
+import TiendaLegal2 from  "../assets/img/projects/eterna/tl3.webp"
+import TiendaLegal3 from  "../assets/img/projects/eterna/tl1.webp"
+import TiendaLegal4 from  "../assets/img/projects/eterna/tl2.webp"
 
-import Maxi from "../assets/img/projects/maxi/maxi.jpg"
-import Maxi2 from "../assets/img/projects/maxi/maxi2.png"
-import Maxi3 from "../assets/img/projects/maxi/maxi3.jpg"
-import Maxi4 from "../assets/img/projects/maxi/maxi4.jpg"
-import Maxi5 from "../assets/img/projects/maxi/maxi5.jpg"
-import Maxi6 from "../assets/img/projects/maxi/maxi6.jpg"
+import Maxi from "../assets/img/projects/maxi/maxi.webp"
+import Maxi2 from "../assets/img/projects/maxi/maxi2.webp"
+import Maxi3 from "../assets/img/projects/maxi/maxi3.webp"
+import Maxi4 from "../assets/img/projects/maxi/maxi4.webp"
+import Maxi5 from "../assets/img/projects/maxi/maxi5.webp"
+import Maxi6 from "../assets/img/projects/maxi/maxi6.webp"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,12 +114,13 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <section id="projects" ref={sectionRef} className="bg-gradient-section-4 dark:bg-gradient-section-4-dark">
-      <div className='section-container py-24'>
+      <div className='section-container py-24 '>
         <SectionTitle
           subtitle=""
           title="Proyectos Relevantes"
           description="Algunos proyectos que representaron un gran reto a nivel profesional"
           center={true}
+          className="text-foreground dark:text-foreground"
         />
 
         <div className="space-y-24 mt-16">
@@ -131,7 +132,6 @@ const ProjectsSection: React.FC = () => {
             image={project.image}
             tags={project.tags}
             liveUrl={project.liveUrl}
-            githubUrl={project.githubUrl}
             reversed={index % 2 === 1}
             onLiveDemoClick={() => handleLiveDemoClick(project)}
             />

@@ -11,8 +11,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import WaveAnimation from '@/components/WaveAnimation';
 
-import Bots from "../assets/img/bots.png"
-import Astro from "../assets/img/astro2.png"
+import Bots from "../assets/img/bots.webp"
+
 
 gsap.registerPlugin(ScrollTrigger);
 

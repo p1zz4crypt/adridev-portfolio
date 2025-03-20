@@ -6,7 +6,7 @@ import RevealOnScroll from '@/components/RevealOnScroll';
 import { Button } from '@/components/ui/button';
 import { View } from 'lucide-react';
 import Me from "../assets/adr-min.webp";
-import Me2 from "../assets/adri2.jpg";
+import Me2 from "../assets/img/adri2.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,7 +59,7 @@ const AboutSection: React.FC = () => {
 
   return (
     <section id="about" ref={sectionRef} className="w-full bg-gradient-section-2 dark:bg-gradient-section-2-dark ">
-      <div className='section-container py-24 relative'>
+      <div className='section-container py-24 relative '>
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-[600px]" ref={leftColRef}>
             {/* Imagen 1 */}
@@ -99,7 +99,7 @@ const AboutSection: React.FC = () => {
             />
 
             <RevealOnScroll>
-              <p className="mb-6 text-muted-foreground">
+              <p className="mb-6 text-muted-foreground text-foreground dark:text-foreground">
                 ¡Hola! Soy Adriana Rosas, una ex cocinera que un día decidió dar un giro en su vida y aprender desarrollo. <br /><br /> A lo largo de mis 6 años de experiencia, he trabajado con herramientas como JavaScript, Vue.js y React para construir aplicaciones web modernas, responsivas y centradas en el usuario.<br />
 
                 Me encanta explorar y aprender sobre tecnologías emergentes, especialmente Blockchain, aprendizaje automático y animación web, y siempre busco formas de integrarlas en mis proyectos para crear soluciones innovadoras.<br /> Disfruto enfrentar retos técnicos y colaborar en equipos multidisciplinarios para llevar ideas creativas al siguiente nivel.

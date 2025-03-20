@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ParticleBackground from '@/components/ParticleBackground';
-import videoSrc from "../assets/video.mp4"
+import videoSrc from "../assets/video.webm"
 
 const HeroSection: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
     <section id="home" className="bg-gradient-section-1 dark:bg-gradient-section-1-dark min-h-screen relative flex items-center overflow-hidden pt-16">
       <ParticleBackground particleCount={70} />
 
-      <div className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10 text-foreground dark:text-foreground">
         <div>
 
           <motion.div
@@ -80,7 +80,7 @@ const HeroSection: React.FC = () => {
           </h1>
 
           <motion.p
-            className="text-muted-foreground text-lg mb-8 max-w-lg"
+            className="text-muted-foreground text-lg mb-8 max-w-lg text-foreground dark:text-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}

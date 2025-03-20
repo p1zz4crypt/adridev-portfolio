@@ -25,7 +25,7 @@ const SkillCard: React.FC<SkillCardProps> = ({
     >
       <div className="mb-4 text-primary">{icon}</div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
+      <p className="text-muted-foreground text-foreground dark:text-foreground">{description}</p>
     </motion.div>
   );
 };
