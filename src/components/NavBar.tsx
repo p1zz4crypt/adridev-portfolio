@@ -135,7 +135,7 @@ const NavBar = () => {
                 </Button>
               </div>
 
-              <div className="flex flex-col items-center justify-center gap-8 flex-grow">
+              <div className="flex flex-col bg-white items-center justify-center gap-8 flex-grow">
                 {navLinks.map((link, i) => (
                   <motion.a
                     key={link.name}
@@ -152,17 +152,7 @@ const NavBar = () => {
                 ))}
               </div>
 
-              <div className="flex justify-center gap-6 py-6">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover-scale">
-                  <Github className="h-6 w-6" />
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover-scale">
-                  <Linkedin className="h-6 w-6" />
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover-scale">
-                  <Twitter className="h-6 w-6" />
-                </a>
-              </div>
+              
             </div>
           </motion.div>
         )}
