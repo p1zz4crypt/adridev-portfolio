@@ -73,6 +73,7 @@ const AboutSection: React.FC = () => {
                 src={Me}
                 alt="About Me 1"
                 className="rounded-xl shadow-xl border border-white/10 dark:border-midnight/20 w-full h-auto aspect-square object-cover"
+                loading="lazy"
               />
             </div>
 
@@ -87,6 +88,7 @@ const AboutSection: React.FC = () => {
                 src={Me2}
                 alt="About Me 2"
                 className="rounded-xl shadow-xl border border-white/10 dark:border-midnight/20 w-full h-auto aspect-square object-cover"
+                loading="lazy"
               />
             </div>
           </div>

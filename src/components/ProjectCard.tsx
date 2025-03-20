@@ -47,6 +47,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             src={image}
             alt={title}
             className="w-full h-auto rounded-xl object-cover aspect-video"
+            loading="lazy"
           />
         </motion.div>
       </div>

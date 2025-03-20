@@ -59,9 +59,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                                             src={image.url}
                                             alt={`Project ${index + 1}`}
                                             className=" rounded-lg"
-                                            // style={{border: "2px solid blue"}}
-
-                                            // style={{width: "90%", height: "400px"}}
+                                            loading="lazy"
                                         />
                                         <p className="text-center mt-2 text-gray-600 dark:text-gray-300">
                                             {image.description}

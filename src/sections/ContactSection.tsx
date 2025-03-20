@@ -170,7 +170,7 @@ const ContactSection: React.FC = () => {
             onSubmit={handleSubmit}
             className="glass-card p-8 rounded-xl"
           >
-            <img src={Bots} alt="bot" />
+            <img src={Bots} alt="bot" loading="lazy"/>
           </form>
         </div>
       </div>
