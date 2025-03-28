@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => {
             className="text-muted-foreground text-lg mb-8 max-w-lg text-foreground dark:text-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             Front-end Developer con 6 años de experiencia en el desarrollo de
             aplicaciones web con Javascript, Vue y React. Tengo un gran interés
@@ -97,7 +97,6 @@ const HeroSection: React.FC = () => {
                 loop
                 muted
                 playsInline
-                loading="lazy"
                 preload="none"
                 width="640"
                 height="360"
