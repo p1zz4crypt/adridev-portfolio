@@ -48,7 +48,7 @@ const AboutSection: React.FC = () => {
   }, []);
 
   const handleViewCV = () => {
-    const pdfUrl = "/Cv_AdrianaRosas_2025.pdf";
+    const pdfUrl = "/CV-Adriana-Rosas-2025.pdf";
     window.open(pdfUrl, '_blank');
   };
 
