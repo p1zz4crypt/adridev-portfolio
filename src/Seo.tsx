@@ -22,7 +22,7 @@ export function Seo({
 }: SeoProps) {
   const location = useLocation();
   const canonicalUrl = url || `https://adrirosasdev.com${location.pathname}`;
-  const fullImageUrl = image?.startsWith('http') ? image : `https://adrirosasdev.com${image}`;
+  const fullImageUrl = image?.startsWith('http') ? image : 'https://adrirosasdev.com/images/og-me.png';
 
   // Datos estructurados por defecto (personaliza con tu información)
   const defaultStructuredData = {
@@ -48,10 +48,11 @@ export function Seo({
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={canonicalUrl} />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
+        <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@p1zz4crypt" /> {/* Reemplázalo */}
+  <meta name="twitter:creator" content="@p1zz4crypt" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
         <meta property="twitter:image" content={fullImageUrl} />
         <meta property="twitter:creator" content="@p1zz4crypt" /> 
 
