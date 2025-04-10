@@ -1,5 +1,5 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom'; // Asegúrate de importar useLocation
+import { useLocation } from 'react-router-dom';
 
 interface SeoProps {
   title: string;
@@ -8,7 +8,7 @@ interface SeoProps {
   url?: string;
   image?: string;
   type?: 'website' | 'article' | 'profile' | 'portfolio';
-  structuredData?: object; // Para schema markup
+  structuredData?: object;
 }
 
 export function Seo({ 
@@ -22,9 +22,13 @@ export function Seo({
 }: SeoProps) {
   const location = useLocation();
   const canonicalUrl = url || `https://adrirosasdev.com${location.pathname}`;
-  const fullImageUrl = image?.startsWith('http') ? image : 'https://adrirosasdev.com/images/og-me.png';
+  const fullImageUrl = image.startsWith('http') ? image : `https://adrirosasdev.com${image}`;
 
-  // Datos estructurados por defecto (personaliza con tu información)
+  // Verifica que la imagen tenga el formato correcto
+  const twitterImageUrl = fullImageUrl.endsWith('.png') ? 
+    fullImageUrl.replace('.png', '.jpg') : 
+    fullImageUrl;
+
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -41,20 +45,27 @@ export function Seo({
   return (
     <HelmetProvider>
       <Helmet>
-        {/* Metadatos básicos */}
         <title>{`${title} | Adri Rosas Dev`}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href={canonicalUrl} />
         
-        {/* Twitter */}
+        {/* Open Graph */}
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={fullImageUrl} />
+        <meta property="og:site_name" content="Adri Rosas Dev" />
+
+        {/* Twitter Card  */}
         <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@p1zz4crypt" /> {/* Reemplázalo */}
-  <meta name="twitter:creator" content="@p1zz4crypt" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-        <meta property="twitter:image" content={fullImageUrl} />
-        <meta property="twitter:creator" content="@p1zz4crypt" /> 
+        <meta name="twitter:site" content="@p1zz4crypt" />
+        <meta name="twitter:creator" content="@p1zz4crypt" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={twitterImageUrl} />
+        <meta name="twitter:domain" content="adrirosasdev.com" />
 
         {/* Schema.org markup */}
         <script type="application/ld+json">
