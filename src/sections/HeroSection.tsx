@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ArrowDown } from 'lucide-react';
 import ParticleBackground from '@/components/ParticleBackground';
 import videoSrc from "../assets/video.webm";
+import { Seo } from '@/Seo';
 
 const HeroSection: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -60,6 +61,13 @@ const HeroSection: React.FC = () => {
   };
 
   return (
+    <>
+    <Seo 
+            title=" Sobre Adri Rosas| Experiencia y Habilidades"
+            description="Front End Developer | Diseño UI | Tecnología Blockchain"
+            type="profile"
+            image="/images/og-me.png"
+          />
     <section id="home" className="bg-gradient-section-1 dark:bg-gradient-section-1-dark min-h-screen relative flex items-center overflow-hidden pt-16">
       <ParticleBackground particleCount={70} />
 
@@ -117,6 +125,7 @@ const HeroSection: React.FC = () => {
         <ArrowDown className="w-6 h-6 text-primary" />
       </a>
     </section>
+    </>
   );
 };
 

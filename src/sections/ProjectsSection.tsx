@@ -25,6 +25,8 @@ import Maxi4 from "../assets/img/projects/maxi/maxi4.webp"
 import Maxi5 from "../assets/img/projects/maxi/maxi5.webp"
 import Maxi6 from "../assets/img/projects/maxi/maxi6.webp"
 
+import { Seo } from '@/Seo';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection: React.FC = () => {
@@ -113,6 +115,13 @@ const ProjectsSection: React.FC = () => {
 
 
   return (
+    <>
+   <Seo 
+           title=" Sobre Adri Rosas| Experiencia y Habilidades"
+           description="Front End Developer | Diseño UI | Tecnología Blockchain"
+           type="profile"
+           image="/images/og-me.png"
+         />
     <section id="projects" ref={sectionRef} className="bg-gradient-section-4 dark:bg-gradient-section-4-dark">
       <div className='section-container py-24 '>
         <SectionTitle
@@ -146,6 +155,7 @@ const ProjectsSection: React.FC = () => {
         />
       )}
     </section>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ import Footer from '@/components/Footer';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { Seo } from '@/Seo';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -57,6 +58,13 @@ const Index: React.FC = () => {
   }, []);
 
   return (
+    <>
+    <Seo 
+            title=" Sobre Adri Rosas| Experiencia y Habilidades"
+            description="Front End Developer | Diseño UI | Tecnología Blockchain"
+            type="profile"
+            image="/images/og-me.png"
+          />
     <div className="min-h-screen flex flex-col">
       <NavBar />
       
@@ -71,6 +79,7 @@ const Index: React.FC = () => {
       
       <Footer />
     </div>
+    </>
   );
 };
 

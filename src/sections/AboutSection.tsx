@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { View } from 'lucide-react';
 import Me from "../assets/adr-min.webp";
 import Me2 from "../assets/img/adri2.webp";
+import { Seo } from '../Seo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,6 +59,13 @@ const AboutSection: React.FC = () => {
   };
 
   return (
+    <>
+    <Seo 
+        title=" Sobre Adri Rosas| Experiencia y Habilidades"
+        description="Front End Developer | Diseño UI | Tecnología Blockchain"
+        type="profile"
+        image="/images/og-me.png"
+      />
     <section id="about" ref={sectionRef} className="w-full bg-gradient-section-2 dark:bg-gradient-section-2-dark ">
       <div className='section-container py-24 relative '>
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -123,6 +131,7 @@ const AboutSection: React.FC = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

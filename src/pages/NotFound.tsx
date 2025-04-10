@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Seo } from '../Seo';
 
 const NotFound: React.FC = () => {
   const location = useLocation();
@@ -42,6 +43,14 @@ const NotFound: React.FC = () => {
   }, [location.pathname]);
 
   return (
+    <>
+    <Seo 
+            title=" Sobre Adri Rosas| Experiencia y Habilidades"
+            description="Front End Developer | Diseño UI | Tecnología Blockchain"
+            type="profile"
+            image="/images/og-me.png"
+          />
+    
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary/30 px-4">
       <div className="text-center max-w-md">
         <h1 className="error-code text-9xl font-bold text-gradient mb-4">404</h1>
@@ -61,6 +70,7 @@ const NotFound: React.FC = () => {
         <div className="absolute bottom-1/4 right-1/4 w-1/3 h-1/3 bg-lavender/10 rounded-full blur-3xl"></div>
       </div>
     </div>
+    </>
   );
 };
 
