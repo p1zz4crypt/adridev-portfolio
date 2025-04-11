@@ -37,26 +37,12 @@ export function Seo({
     "sameAs": [
       "https://github.com/p1zz4crypt",
       "https://linkedin.com/in/adrianarosasf",
-      "https://twitter.com/p1zz4crypt",
+      "https://twitter.com/p1zz4crypt"
     ],
     "description": description,
     "image": fullImageUrl,
-    "mainEntityOfPage": canonicalUrl, 
-    "hasOccupation": {
-      "@type": "Occupation",
-      "name": "Front End Developer",
-      "description": "Desarrollo de aplicaciones web modernas con React, TypeScript y tecnologías frontend",
-      "skills": ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"],
-      "estimatedSalary": {
-        "@type": "MonetaryAmount",
-        "currency": "MXN",
-        "value": "45000" 
-      },
-      "occupationLocation": {
-        "@type": "Country",
-        "name": "México"
-      }
-    }
+    "mainEntityOfPage": canonicalUrl,
+    "knowsAbout": ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"]
   };
 
   // Combinar con structuredData personalizado si existe
