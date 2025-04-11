@@ -54,13 +54,32 @@ export function Seo({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Adriana Rosas",
+    alternateName: "Adri Rosas",
     jobTitle: "Front End Developer",
     url: "https://adrirosasdev.com",
     sameAs: [
       "https://github.com/p1zz4crypt",
       "https://linkedin.com/in/adrianarosasf",
+      "https://twitter.com/p1zz4crypt",
     ],
     description: description,
+    image: fullImageUrl,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ciudad",
+      addressRegion: "Región",
+      addressCountry: "País",
+    },
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Nombre de tu institución educativa",
+    },
+    knowsLanguage: ["es", "en"],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Front End Developer",
+      skills: ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"],
+    },
   };
 
   return (
@@ -104,6 +123,12 @@ export function Seo({
               description: description,
             }
           )}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            ...defaultStructuredData,
+            ...(structuredData || {}),
+          })}
         </script>
       </Helmet>
     </HelmetProvider>
