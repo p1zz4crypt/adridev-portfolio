@@ -26,42 +26,35 @@ export function Seo({
     ? image
     : `https://adrirosasdev.com${image}`;
 
-  // Datos estructurados principales
+  // Datos estructurados principales 
   const baseStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Adriana Rosas",
-    alternateName: "Adri Rosas",
-    jobTitle: "Front End Developer",
-    url: "https://adrirosasdev.com",
-    sameAs: [
+    "name": "Adriana Rosas",
+    "alternateName": "Adri Rosas",
+    "jobTitle": "Front End Developer",
+    "url": "https://adrirosasdev.com",
+    "sameAs": [
       "https://github.com/p1zz4crypt",
       "https://linkedin.com/in/adrianarosasf",
       "https://twitter.com/p1zz4crypt",
     ],
-    description: description,
-    image: fullImageUrl,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": canonicalUrl
-    },
-    hasOccupation: {
+    "description": description,
+    "image": fullImageUrl,
+    "mainEntityOfPage": canonicalUrl, 
+    "hasOccupation": {
       "@type": "Occupation",
-      name: "Front End Developer",
-      description: "Desarrollo de aplicaciones web modernas con React, TypeScript y tecnologías frontend",
-      skills: ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"],
-      estimatedSalary: {
+      "name": "Front End Developer",
+      "description": "Desarrollo de aplicaciones web modernas con React, TypeScript y tecnologías frontend",
+      "skills": ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"],
+      "estimatedSalary": {
         "@type": "MonetaryAmount",
-        currency: "MXN",
-        value: {
-          "@type": "QuantitativeValue",
-          value: 45000,
-          unitText: "MONTH"
-        }
+        "currency": "MXN",
+        "value": "45000" 
       },
-      occupationLocation: {
+      "occupationLocation": {
         "@type": "Country",
-        name: "México"
+        "name": "México"
       }
     }
   };
@@ -99,7 +92,7 @@ export function Seo({
 
         {/* Schema.org - Solo un script */}
         <script type="application/ld+json">
-          {JSON.stringify(finalStructuredData)}
+          {JSON.stringify(finalStructuredData, null, 2)} 
         </script>
       </Helmet>
     </HelmetProvider>
