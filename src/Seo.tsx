@@ -114,13 +114,47 @@ export function Seo({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Adriana Rosas",
+              alternateName: "Adri Rosas",
               jobTitle: "Front End Developer",
               url: "https://adrirosasdev.com",
               sameAs: [
                 "https://github.com/p1zz4crypt",
                 "https://linkedin.com/in/adrianarosasf",
+                "https://twitter.com/p1zz4crypt",
               ],
               description: description,
+              image: fullImageUrl,
+              hasOccupation: {
+                "@type": "Occupation",
+                name: "Front End Developer",
+                description:
+                  "Desarrollo de aplicaciones web modernas con React, TypeScript y tecnologías frontend",
+                skills: [
+                  "JavaScript",
+                  "React",
+                  "TypeScript",
+                  "Vue.js",
+                  "Blockchain",
+                ],
+                estimatedSalary: {
+                  "@type": "MonetaryAmount",
+                  currency: "MXN, USD",
+                  value: {
+                    "@type": "QuantitativeValue",
+                    minValue: 30000,
+                    maxValue: 60000,
+                    unitText: "YEAR",
+                  },
+                },
+                occupationLocation: {
+                  "@type": "Country",
+                  name: "México", 
+                },
+              },
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://adrirosasdev.com",
+              },
             }
           )}
         </script>
