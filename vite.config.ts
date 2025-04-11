@@ -19,11 +19,11 @@ export default defineConfig(({ mode }) => ({
     viteStaticCopy({
       targets:[
         {
-          src: 'src/assets/og-images.png',
+          src: './public/og-image.png',
           dest: 'images'
         },
         {
-          src: 'src/assets/images/favicon.ico',
+          src: './public/favicon.ico',
           dest: 'images'
         },
       ]
