@@ -13,10 +13,10 @@ interface SeoProps {
 
 export function Seo({
   title,
-  description,
+  description = "Portafolio profesional de Adriana Rosas - Desarrolladora Frontend especializada en React, TypeScript y tecnologías web modernas.",
   keywords = "desarrollador javascript, programador react, frontend developer, Adri Rosas",
   url,
-  image = "https://adrirosasdev.com/images/og-image.png",
+  image = "/images/og-image.png",
   type = "website",
   structuredData,
 }: SeoProps) {
@@ -26,31 +26,8 @@ export function Seo({
     ? image
     : `https://adrirosasdev.com${image}`;
 
-  const metaData = {
-    title: `${title} | Adri Rosas Dev`,
-    description,
-    keywords,
-    canonicalUrl,
-    ogType: type,
-    ogUrl: canonicalUrl,
-    ogTitle: title,
-    ogDescription: description,
-    ogImage: fullImageUrl,
-    twitterCard: "summary_large_image",
-    twitterSite: "@p1zz4crypt",
-    twitterCreator: "@p1zz4crypt",
-    twitterTitle: title,
-    twitterDescription: description,
-    twitterImage: fullImageUrl,
-    twitterDomain: "adrirosasdev.com",
-  };
-
-  // Verifica que la imagen tenga el formato correcto
-  const twitterImageUrl = fullImageUrl.endsWith(".png")
-    ? fullImageUrl.replace(".png", ".jpg")
-    : fullImageUrl;
-
-  const defaultStructuredData = {
+  // Datos estructurados principales
+  const baseStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Adriana Rosas",
@@ -64,27 +41,40 @@ export function Seo({
     ],
     description: description,
     image: fullImageUrl,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Ciudad",
-      addressRegion: "Región",
-      addressCountry: "País",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl
     },
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "Nombre de tu institución educativa",
-    },
-    knowsLanguage: ["es", "en"],
     hasOccupation: {
       "@type": "Occupation",
       name: "Front End Developer",
+      description: "Desarrollo de aplicaciones web modernas con React, TypeScript y tecnologías frontend",
       skills: ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"],
-    },
+      estimatedSalary: {
+        "@type": "MonetaryAmount",
+        currency: "MXN",
+        value: {
+          "@type": "QuantitativeValue",
+          value: 45000,
+          unitText: "MONTH"
+        }
+      },
+      occupationLocation: {
+        "@type": "Country",
+        name: "México"
+      }
+    }
   };
+
+  // Combinar con structuredData personalizado si existe
+  const finalStructuredData = structuredData 
+    ? { ...baseStructuredData, ...structuredData } 
+    : baseStructuredData;
 
   return (
     <HelmetProvider>
       <Helmet>
+        {/* Metadatos básicos */}
         <title>{`${title} | Adri Rosas Dev`}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
@@ -97,72 +87,19 @@ export function Seo({
         <meta property="og:description" content={description} />
         <meta property="og:image" content={fullImageUrl} />
         <meta property="og:site_name" content="Adri Rosas Dev" />
+        <meta property="og:locale" content="es_MX" />
 
-        {/* Twitter Card  */}
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@p1zz4crypt" />
         <meta name="twitter:creator" content="@p1zz4crypt" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={twitterImageUrl} />
-        <meta name="twitter:domain" content="adrirosasdev.com" />
+        <meta name="twitter:image" content={fullImageUrl} />
 
-        {/* Schema.org */}
+        {/* Schema.org - Solo un script */}
         <script type="application/ld+json">
-          {JSON.stringify(
-            structuredData || {
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Adriana Rosas",
-              alternateName: "Adri Rosas",
-              jobTitle: "Front End Developer",
-              url: "https://adrirosasdev.com",
-              sameAs: [
-                "https://github.com/p1zz4crypt",
-                "https://linkedin.com/in/adrianarosasf",
-                "https://twitter.com/p1zz4crypt",
-              ],
-              description: description,
-              image: fullImageUrl,
-              hasOccupation: {
-                "@type": "Occupation",
-                name: "Front End Developer",
-                description:
-                  "Desarrollo de aplicaciones web modernas con React, TypeScript y tecnologías frontend",
-                skills: [
-                  "JavaScript",
-                  "React",
-                  "TypeScript",
-                  "Vue.js",
-                  "Blockchain",
-                ],
-                estimatedSalary: {
-                  "@type": "MonetaryAmount",
-                  currency: "MXN, USD",
-                  value: {
-                    "@type": "QuantitativeValue",
-                    minValue: 30000,
-                    maxValue: 60000,
-                    unitText: "YEAR",
-                  },
-                },
-                occupationLocation: {
-                  "@type": "Country",
-                  name: "México", 
-                },
-              },
-              mainEntityOfPage: {
-                "@type": "WebPage",
-                "@id": "https://adrirosasdev.com",
-              },
-            }
-          )}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            ...defaultStructuredData,
-            ...(structuredData || {}),
-          })}
+          {JSON.stringify(finalStructuredData)}
         </script>
       </Helmet>
     </HelmetProvider>
