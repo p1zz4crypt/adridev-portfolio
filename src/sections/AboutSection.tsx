@@ -69,7 +69,7 @@ const AboutSection: React.FC = () => {
         title=" Sobre Adri Rosas| Experiencia y Habilidades"
         description="Front End Developer | Diseño UI | Tecnología Blockchain"
         type="profile"
-        image="/images/og-me.png"
+        image="/public/og-image.png"
       />
       <section
         id="about"

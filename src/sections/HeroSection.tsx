@@ -94,7 +94,7 @@ const HeroSection: React.FC = () => {
         title="Adriana Rosas | Frontend Developer"
         description="Desarrolladora Frontend con experiencia en React, TypeScript y tecnologías modernas"
         type="profile"
-        image="/images/og-me.png"
+        image="/public/og-image.png"
       />
       
       <section id="home" className="bg-gradient-section-1 dark:bg-gradient-section-1-dark min-h-screen relative flex items-center overflow-hidden pt-16">

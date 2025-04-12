@@ -120,7 +120,7 @@ const ProjectsSection: React.FC = () => {
            title=" Sobre Adri Rosas| Experiencia y Habilidades"
            description="Front End Developer | Diseño UI | Tecnología Blockchain"
            type="profile"
-           image="/images/og-me.png"
+           image="/public/og-image.png"
          />
     <section id="projects" ref={sectionRef} className="bg-gradient-section-4 dark:bg-gradient-section-4-dark">
       <div className='section-container py-24 '>

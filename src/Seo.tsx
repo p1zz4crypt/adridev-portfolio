@@ -16,7 +16,7 @@ export function Seo({
   description = "Portafolio profesional de Adriana Rosas - Desarrolladora Frontend especializada en React, TypeScript y tecnologías web modernas.",
   keywords = "desarrollador javascript, programador react, frontend developer, Adri Rosas",
   url,
-  image = "/images/og-image.png",
+  image = "/public/og-image.png",
   type = "website",
   structuredData,
 }: SeoProps) {
