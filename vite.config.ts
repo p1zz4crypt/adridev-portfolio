@@ -15,6 +15,8 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     viteImagemin({
+      webp: { quality: 80 },
+      jpg: { quality: 85 },
       gifsicle: { optimizationLevel: 3 },
       optipng: { optimizationLevel: 5 },
       mozjpeg: { quality: 75 },
