@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionTitle from '@/components/SectionTitle';
 import ProjectCard from '@/components/ProjectCard';
 import ProjectModal from '@/components/ProjectModal';
-// Imganes
+// Imagenes
 import MaxCluster from "../assets/img/projects/maxc/mc.webp"
 import MaxCluster2 from "../assets/img/projects/maxc/mc2.webp"
 import MaxPortada from "../assets/img/projects/maxc/maxc.webp"
@@ -25,6 +25,16 @@ import Maxi4 from "../assets/img/projects/maxi/maxi4.webp"
 import Maxi5 from "../assets/img/projects/maxi/maxi5.webp"
 import Maxi6 from "../assets/img/projects/maxi/maxi6.webp"
 
+import DataHooks from "../assets/img/projects/dh/dh.png"
+import DataInter from "../assets/img/projects/dh/dha.png"
+import DataInter2 from "../assets/img/projects/dh/dha2.png"
+import Gomore from "../assets/img/projects/dh/gomore.png"
+// Vídeos - Import ejemplos de video (reemplazar con tus videos reales)
+import videoDemo from "../assets/video.webm"
+import Research from "../assets/img/projects/dh/research.png"
+import Wuffes from "../assets/img/projects/dh/wuffes2_evenlabs.mp4"
+import Wfs from "../assets/img/projects/dh/wfs1.mp4"
+
 import { Seo } from '@/Seo';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,23 +44,58 @@ const ProjectsSection: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<{
     title: string;
     liveUrl: string;
+    description: string;
     images: { url: string; description: string }[];
   } | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const projects = [
     {
-      title: 'Max Cluster',
-      description: 'Colaboré en la implementación de blockchain en el despacho de Auditoría "Ferrer y Asociados" perteneciente a Grupo Salinas así como con la documentación del proyecto.',
-      image: MaxPortada,
-      tags: ['Blockchain','Solidity', 'GSAP', 'Overleaf', 'axios', 'Canva'],
-      liveUrl: '#',
+      title: "Datahooks",
+      description: `Plataforma de analítica y operaciones para e-commerce. Implementaciones, conexión con API, investigación y prototipado de tiendas Shopify. Creación de pipelines de media generativa y avatares con voz para creativos,  documentación de POCs y resultados para adopción interna.`,
+      image: DataHooks,
+      tags: [
+        "Vue 3",
+        "Vuex",
+        "Chart.js",
+        "Shopify",
+        "Liquid",
+        "Insomnia",
+        "axios",
+        "Runway",
+        "ElevenLabs",
+        "Nano Banana",
+        "ImageFX",
+        "RoboNeo",
+        "Tailwind",
+        "GSAP"
+      ],
+      liveUrl: "#",
       images: [
-        { url: MaxCluster, description: 'Interfaz para visualización de la información hecha con React JS, Tailwind CSS y GSAP. Desarrollo de contrato inteligente y conexión con la API mediante Axios.' },
-        { url: MaxCluster2, description: 'Interfaz para visualización de la información hecha con React JS, Tailwind CSS, GSAP. Desarrollo de contrato inteligente y conexión con la API mediante Axios.' },
-        { url: Docu, description: 'Investigación, redacción y diseño de Paper realizado en Canva.' },
-        { url: Docu2, description: 'Documentación técnica utilizando Overleaf.' },
-        { url: Capacitacion, description: 'Apoyo en capacitación para el Grupo.' },
+        {
+          url: Gomore,
+          description: "Rediseño y construcción de tienda en Shopify: UI/UX de páginas de producto y colección, implementación de theme (Liquid, OS 2.0), maquetado responsive y prototipos funcionales para tests A/B."
+        },
+
+        {
+          url: DataInter2,
+          description: "Colaboración en la creación de dashboards interactivos con Vue 3 y Chart.js destinados a monitorizar precios, promos y KPIs."
+        },
+        {
+          url: Research,
+          description: "Colaboro en la investigación de herramientas con el fin de automatizar la producción de creativos con IA: masterización de prompts, generación de avatares con voz (ElevenLabs / HeyGen), pipelines de imagen/video con Runway, RoboNeo, ImageFX y Nano Banana; creación de assets y videos para pruebas publicitarias."
+        },
+        {
+          url: Wuffes,
+          isVideo: true,
+          description: "Ejemplo de video producido con ElevenLabs - Demo de avatares digitales con voces generadas por IA."
+        },
+        {
+          url: Wfs,
+          isVideo: true,
+          description: "Ejemplo de video producido con ElevenLabs - Demo de avatares digitales con voces generadas por IA."
+        },
+      
       ]
     },
     {
@@ -60,31 +105,31 @@ const ProjectsSection: React.FC = () => {
       tags: ['React', 'Tailwind CSS', 'GSAP', 'axios'],
       liveUrl: '#',
       images: [
-
         { url: Maxi4, description: 'Autenticación mediante Axios.' },
         { url: Maxi2, description: 'Animaciones realizadas con GSAP y CSS personalizado. Manejo y protección de rutas, uso de hooks para manejar el estado y el acceso de la información del usuario en toda la aplicación.' },
         { url: Maxi3, description: 'Conexión con API de IA para el funcionamiento del chatbot.' },
         { url: Maxi5, description: 'Diseño de template para documentación técnica.' },
         { url: Maxi6, description: 'Reacción y diseño de paper informativo en Canva.' },
-      ] 
+      ]
     },
     {
-      title: 'Tienda Legal',
+      title: 'TLegal',
       description: 'Proyecto de automatización de contratos legales.',
-      image: TiendaLegal,
+      image: TiendaLegal, 
       tags: ['Vue', 'GraphQL', 'Vuetify', 'Vuex',],
       liveUrl: '#',
       images: [
         { url: TiendaLegal2, description: 'Apoyo en el desarrollo de la interfaz.' },
         { url: TiendaLegal3, description: 'Apoyo en el desarrollo de la interfaz.' },
         { url: TiendaLegal4, description: 'Apoyo en el desarrollo de la interfaz.' },
-      ] 
+      ]
     }
   ];
 
   const handleLiveDemoClick = (project: {
     title: string;
     liveUrl: string;
+    description: string;
     images: { url: string; description: string }[];
   }) => {
     setSelectedProject(project);
@@ -139,6 +184,7 @@ const ProjectsSection: React.FC = () => {
             title={project.title}
             description={project.description}
             image={project.image}
+            isVideo={project.isVideo}
             tags={project.tags}
             liveUrl={project.liveUrl}
             reversed={index % 2 === 1}

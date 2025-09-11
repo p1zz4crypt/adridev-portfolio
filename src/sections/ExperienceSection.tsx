@@ -14,6 +14,14 @@ const ExperienceSection: React.FC = () => {
 
   const experiences = [
     {
+  period: '01/2024 – 12/2025',
+  title: 'Front-end Developer y trainee de UX & AI Workflows',
+  company: 'Datahooks',
+  description: 'Rediseñé y construí tienda en Shopify y prototipos de producto. / Contribuí a desarrollar dashboards para monitoreo de precios, promos y KPIs. / Integré fuentes de datos y APIs y creé pipelines de media generativa y avatares con IA.'
+},
+
+    {
+      
       period: '01/2024 – 12/2025 ',
       title: 'Front End Developer',
       company: 'Grupo Salinas',
@@ -68,7 +76,7 @@ const ExperienceSection: React.FC = () => {
         <SectionTitle
           subtitle="Experiencia"
           title="Mi viaje profesional"
-          description="Una línea de tiempo de mi carrera y crecimiento profesional en el desarrollo frontend."
+          description=""
           center={true}
         />
 

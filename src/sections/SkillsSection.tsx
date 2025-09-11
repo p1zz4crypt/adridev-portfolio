@@ -6,6 +6,7 @@ import { Code, Palette, Sparkles, Globe, Brain, Rocket } from 'lucide-react';
 import SectionTitle from '@/components/SectionTitle';
 import SkillCard from '@/components/SkillCard';
 import ParallaxText from '@/components/ParallaxText';
+import { ShoppingCart } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,27 +18,27 @@ const SkillsSection: React.FC = () => {
     {
       icon: <Code className="h-10 w-10" />,
       title: 'Desarrollo Front End',
-      description: 'Creo interfaces modernas y responsivas con React, Vue y JavaScript, asegurando código limpio y eficiente.'
+      description: 'Interfaces modernas y responsivas. Componentes reutilizables y rendimiento.'
     },
     {
       icon: <Palette className="h-10 w-10" />,
       title: 'Diseño UI/UX',
-      description: 'Diseño interfaces intuitivas y accesibles, enfocadas en mejorar la experiencia del usuario.'
+      description: 'Diseño y prototipado de interfaces intuitivas y accesibles, enfocadas en mejorar la experiencia del usuario.'
     },
     {
-      icon: <Sparkles className="h-10 w-10" />,
-      title: 'Animaciones e Interacciones',
-      description: 'Implemento animaciones dinámicas con GSAP y CSS para experiencias más atractivas.'
+      icon: <ShoppingCart className="h-10 w-10" />,
+      title: "Shopify — Tiendas & Temas",
+      description: "Conocimientos de diseño, desarrollo y personalización de tiendas Shopify."
     },
     {
       icon: <Globe className="h-10 w-10" />,
       title: 'Web3',
-      description: 'Desarrollo soluciones Blockchain, incluyendo contratos inteligentes y aplicaciones descentralizadas.'
+      description: 'Conocimientos en blockchain e implementaciones prácticas para trazabilidad.'
     },
     {
       icon: <Brain className="h-10 w-10" />,
       title: 'Integración AI',
-      description: 'Exploro herramientas de IA para crear aplicaciones más inteligentes y personalizadas.'
+      description: 'Conocimientos en la creación de pipelines de media generativa y LLMs para acelerar creativos y decisiones.'
     },
     {
       icon: <Rocket className="h-10 w-10" />,

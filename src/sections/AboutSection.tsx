@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"; // Agrega useState
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { gsap } from "gsap";
@@ -7,30 +7,154 @@ import SectionTitle from "@/components/SectionTitle";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import { Button } from "@/components/ui/button";
 import { View } from "lucide-react";
-import Me from "../assets/adr-min.webp";
-import Me2 from "../assets/img/adri2.webp";
+import Me from "../assets/ad1.png";
+import Me2 from "../assets/ad2.png";
+import Me3 from "../assets/ad3.png";
 import { Seo } from "../Seo";
+import { ArrowLeft } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const leftColRef = useRef<HTMLDivElement>(null);
-  const rightColRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const leftRef = useRef<HTMLDivElement | null>(null);
 
-  // Estado para controlar la imagen activa
-  const [activeImage, setActiveImage] = useState<"image-1" | "image-2">(
-    "image-1"
-  );
+  // Slides content as JSX (badges included)
+  const slidesContent: React.ReactNode[] = [
+    // Slide 1: skills with badges (your provided markup)
+    (
+      <div>
+        <p className="mb-4 text-muted-foreground dark:text-foreground">
+          Soy Adriana Rosas, vivo en CDMX. <br />
+          Desde hace 7 años me dedico al desarrollo front end creando interfaces intuitivas, participando en las etapas de:
+        </p>
 
+        <ul className="space-y-3 mb-6">
+          <li className="flex items-start">
+            <span className="mr-2">-</span>
+            <div className="flex-1">
+              Diseño de interfaz y prototipos prácticos en
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Figma</span>
+                <span aria-label="Adobe XD" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Adobe XD</span>
+              </div>
+            </div>
+          </li>
+
+          <li className="flex items-start">
+            <span className="mr-2">-</span>
+            <div className="flex-1">
+              Creación y modificación de elementos visuales y generación de imagen con IA:
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span aria-label="Photoshop" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Photoshop</span>
+                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Figma</span>
+                <span aria-label="Leonardo AI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Leonardo AI</span>
+                <span aria-label="Stable Diffusion" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Stable Diffusion</span>
+                <span aria-label="ImageFX" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">ImageFX</span>
+                <span aria-label="Nano Banana" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Nano Banana</span>
+              </div>
+            </div>
+          </li>
+
+          <li className="flex items-start">
+            <span className="mr-2">-</span>
+            <div className="flex-1">
+              Maquetación responsiva con
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span aria-label="CSS" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">CSS</span>
+                <span aria-label="Tailwind" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Tailwind</span>
+                <span aria-label="Material-UI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Material-UI</span>
+                <span aria-label="Bootstrap" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Bootstrap</span>
+              </div>
+            </div>
+          </li>
+
+          <li className="flex items-start">
+            <span className="mr-2">-</span>
+            <div className="flex-1">
+              Desarrollo de aplicaciones web con
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span aria-label="Vue" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Vue</span>
+                <span aria-label="React" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">React</span>
+                <span aria-label="JavaScript" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">JavaScript</span>
+              </div>
+            </div>
+          </li>
+
+          <li className="flex items-start">
+            <span className="mr-2">-</span>
+            <div className="flex-1">
+              Conexión con APIs y bases de datos usando
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span aria-label="Insomnia" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Insomnia</span>
+                <span aria-label="GraphQL" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">GraphQL</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    ),
+
+    // Slide 2: long paragraph (your provided text)
+    (
+      <div>
+        <p className="mb-4 text-muted-foreground dark:text-foreground">
+          Antes de ser desarrolladora, fui cocinera durante 7 años. Esa experiencia y mentalidad práctica, colaborativa y orientada al resultado sigue guiando mi trabajo.
+          <br />
+          <br />
+          Esa combinación de aptitudes + un gran deseo de aprender, me brindaron la oportunidad de colaborar en la implementación de <span className="font-black text-violet-500">Blockchain</span>  en el despacho de Auditoría "Ferrer y Asociados", de <span className="font-black text-violet-500">Grupo Salinas</span>.
+        </p>
+
+        <p className="mb-4 text-muted-foreground dark:text-foreground">
+          Afortunadamente la vida es cíclica y yo aprovecho cada vuelta para aprender y construir. Actualmente estoy enfocada en aprender desarrollo de tiendas en Shopify y en crear y escalar POCs que unan datos, 
+          creativos generativos <span className="font-black text-violet-500">(Runway, HeyGen, ElevenLabs, RoboNeo, Veo3)</span>, edición en <span className="font-black text-violet-500">CapCut</span> y automatizaciones con diversas herramientas.
+        </p>
+      </div>
+    ),
+
+    // Slide 3: contact call
+    (
+      <div>
+        <p className="mb-4 text-3xl text-center text-muted-foreground dark:text-foreground">
+          Si tienes un proyecto interesante o simplemente quieres charlar sobre el maravilloso mundo de la tecnología, ¡no dudes en contactarme!
+        </p>
+        <div className="w-full flex justify-center mt-5">
+          <a 
+            href="#contact" 
+            className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-medium text-white bg-violet-600 hover:bg-violet-700 shadow-lg hover:shadow-violet-300/50 transition-all duration-300 transform hover:-translate-y-1"
+          >
+            <View className="mr-2 h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+            Aquí
+          </a>
+        </div>
+      </div>
+    ),
+  ];
+
+  // images for slides (3 entries)
+  const images = [Me, Me2, Me3];
+
+  // slides array for navigation dots
+  const slides = slidesContent.map((_, idx) => ({
+    id: idx,
+    title: `${idx + 1}/${slidesContent.length}`,
+  }));
+
+  // refs
+  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [active, setActive] = useState<number>(0);
+  const prevRef = useRef<number>(0);
+
+  // parallax
   useEffect(() => {
-    if (!sectionRef.current || !leftColRef.current || !rightColRef.current)
-      return;
-
+    if (!sectionRef.current || !leftRef.current) return;
     const ctx = gsap.context(() => {
-      // Parallax effect for images
-      gsap.to(leftColRef.current.querySelector(".image-1"), {
-        y: -50,
+      gsap.to(leftRef.current!.querySelectorAll(".parallax"), {
+        y: -24,
+        ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top bottom",
@@ -38,29 +162,80 @@ const AboutSection: React.FC = () => {
           scrub: 1,
         },
       });
-
-      gsap.to(leftColRef.current.querySelector(".image-2"), {
-        y: 50,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
-    });
-
+    }, sectionRef);
     return () => ctx.revert();
   }, []);
+
+  // initial layout: set visibility
+  useLayoutEffect(() => {
+    slideRefs.current.forEach((el, idx) => {
+      if (el) {
+        gsap.set(el, { autoAlpha: idx === active ? 1 : 0, display: idx === active ? "block" : "none" });
+      }
+    });
+    imageRefs.current.forEach((el, idx) => {
+      if (el) {
+        gsap.set(el, {
+          autoAlpha: idx === active ? 1 : 0.45,
+          scale: idx === active ? 1 : 0.96,
+          zIndex: idx === active ? 20 : 10,
+        });
+      }
+    });
+  }, [active]); // Añadimos active como dependencia
+
+  // animate on active change
+  useEffect(() => {
+    const prev = prevRef.current;
+    if (prev === active) return;
+
+    const outEl = slideRefs.current[prev];
+    const inEl = slideRefs.current[active];
+
+    const tl = gsap.timeline();
+    if (outEl) {
+      tl.to(outEl, { duration: 0.25, autoAlpha: 0, x: -18, ease: "power2.in" });
+      tl.set(outEl, { display: "none" });
+    }
+    if (inEl) {
+      tl.set(inEl, { display: "block", x: 18, autoAlpha: 0 });
+      tl.to(inEl, { duration: 0.45, autoAlpha: 1, x: 0, ease: "power2.out" }, "+=0.02");
+    }
+
+    // images animation
+    const tlImg = gsap.timeline();
+    imageRefs.current.forEach((imgEl, idx) => {
+      if (!imgEl) return;
+      if (idx === active) {
+        tlImg.to(imgEl, { duration: 0.5, autoAlpha: 1, scale: 1, zIndex: 20, ease: "power2.out" }, 0);
+      } else {
+        tlImg.to(imgEl, { duration: 0.45, autoAlpha: 0.45, scale: 0.96, zIndex: 10, ease: "power2.out" }, 0);
+      }
+    });
+
+    prevRef.current = active;
+    return () => {
+      tl.kill();
+      tlImg.kill();
+    };
+  }, [active]);
+
+  const goto = (i: number) => {
+    const safe = Math.max(0, Math.min(i, slidesContent.length - 1));
+    setActive(safe);
+  };
+
+  // Navegación con efecto de bucle
+  const goPrev = () => goto((active - 1 + slidesContent.length) % slidesContent.length);
+  const goNext = () => goto((active + 1) % slidesContent.length);
+
+  // Verificar si estamos en los límites para posible personalización visual
+  const isFirst = active === 0;
+  const isLast = active === slidesContent.length - 1;
 
   const handleViewCV = () => {
     const pdfUrl = "/CV-Adriana-Rosas-2025.pdf";
     window.open(pdfUrl, "_blank");
-  };
-
-  // Manejador para cambiar la imagen activa
-  const handleImageClick = (image: "image-1" | "image-2") => {
-    setActiveImage(image);
   };
 
   return (
@@ -73,82 +248,111 @@ const AboutSection: React.FC = () => {
       />
       <section
         id="about"
-        ref={sectionRef}
-        className="w-full bg-gradient-section-2 dark:bg-gradient-section-2-dark "
+        ref={(el) => (sectionRef.current = el)}
+        className="w-full bg-gradient-section-2 dark:bg-gradient-section-2-dark"
       >
-        <div className="section-container py-24 relative ">
+        <div className="section-container py-24 relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative h-[600px]" ref={leftColRef}>
-              {/* Imagen 1 */}
-              <div
-                className={`absolute top-0 right-0 w-4/5 h-auto ${
-                  activeImage === "image-1" ? "z-20" : "z-10"
-                } image-1 bg-white rounded cursor-pointer`}
-                onClick={() => handleImageClick("image-1")}
-              >
-                <LazyLoadImage
-                  src={Me}
-                  alt="About Me "
-                  className="rounded-xl shadow-xl border border-white/10 dark:border-midnight/20 w-full h-auto aspect-square object-cover"
-                  effect="blur"
-                  width="100%"
-                  height="auto"
-                />
-              </div>
+            {/* LEFT: images */}
+            <div className="relative " ref={(el) => (leftRef.current = el)}>
+              <div className="flex flex-col h-[500px] ">
+                <div>
+                  {images.map((src, idx) => (
+                    <div
+                      key={idx}
+                      ref={(el) => (imageRefs.current[idx] = el)}
+                      className="absolute inset-0 m-auto w-4/6 h-[400px] max-w-[500px]  rounded-xl overflow-hidden shadow-lg parallax cursor-pointer"
+                      style={{
+                        pointerEvents: idx === active ? "auto" : "none",
+                        zIndex: idx === active ? 20 : 10,
+                        opacity: idx === active ? 1 : 0.45,
+                        transform: `scale(${idx === active ? 1 : 0.96})`,
+                        transition: "opacity 260ms ease, transform 260ms ease",
+                      }}
+                      onClick={() => goto(idx)}
+                    >
+                      <LazyLoadImage src={src} alt={`Adriana ${idx + 1}`} effect="blur" className="w-full h-full object-cover aspect-square" />
+                    </div>
+                  ))}
 
-              {/* Imagen 2 */}
-              <div
-                className={`absolute bottom-0 left-0 w-4/5 h-auto ${
-                  activeImage === "image-2" ? "z-20" : "z-10"
-                } image-2 cursor-pointer`}
-                onClick={() => handleImageClick("image-2")}
-              >
-                <LazyLoadImage
-                  src={Me2}
-                  alt="About Me 2"
-                  className="rounded-xl shadow-xl border border-white/10 dark:border-midnight/20 w-full h-auto aspect-square object-cover"
-                  effect="blur"
-                  width="100%"
-                  height="auto"
-                />
+                </div>
+
+              </div>
+              <div className="flex justify-center w-full  gap-3 absolute  z-50 mt-6">
+                <RevealOnScroll delay={0.3}>
+                  <div className=" mr-">
+                    <Button size="lg" className="group bg-violet-600" onClick={handleViewCV}>
+                      <View className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                      Ver CV
+                    </Button>
+                  </div>
+                </RevealOnScroll>
+
+                <div className="flex justify-center">
+                  <button
+                    onClick={goPrev}
+                    className={`px-5 mr-3 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-300
+                      ${isFirst
+                        ? ' border-purple-400'
+                        : 'bg-gradient-section-3 dark:bg-gradient-section-3-dark hover:border-purple-400'}`}
+                  >
+                    <ArrowLeft className={`w-6 h-6 ${isFirst ? 'text-purple-700' : 'text-primary hover:text-purple-700'}`} />
+                  </button>
+                  <button
+                    onClick={goNext}
+                    className={`px-5 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-300
+                      ${isLast
+                        ? ' border-purple-400'
+                        : 'bg-gradient-section-3 dark:bg-gradient-section-3-dark hover:border-purple-400'}`}
+                  >
+                    <ArrowRight className={`w-6 h-6 ${isLast ? 'text-purple-700' : 'text-primary hover:text-purple-700'}`} />
+                  </button>
+                </div>
+
               </div>
             </div>
 
-            <div ref={rightColRef}>
+            {/* RIGHT: slides */}
+            <div className="mt-28 md:mt-0">
               <SectionTitle
                 subtitle="Acerca de mi"
-                title="Un poco de contexto"
+                title={
+                  <div className="flex items-center gap-2">
+                    {slides.map((s) => (
+                      <button
+                        key={s.id}
+                        onClick={() => goto(s.id)}
+                        aria-label={`Ir a ${s.title}`}
+                        aria-current={s.id === active} 
+                        className={`w-3 h-1 px-4  rounded-full transition-all ${s.id === active ? "bg-violet-700" : "bg-violet-100 dark:bg-violet-600"}`}
+                      />
+                    ))}
+                  </div>
+                }
                 center={false}
               />
+              
 
               <RevealOnScroll>
-                <p className="mb-6 text-muted-foreground text-foreground dark:text-foreground">
-                  ¡Hola! Soy Adriana Rosas, una ex cocinera que un día decidió
-                  dar un giro en su vida y aprender desarrollo. <br />
-                  <br /> A lo largo de mis 6 años de experiencia, he trabajado
-                  con herramientas como JavaScript, Vue.js y React para
-                  construir aplicaciones web modernas, responsivas y centradas
-                  en el usuario.
-                  <br />
-                  Me encanta explorar y aprender sobre tecnologías emergentes,
-                  especialmente Blockchain, aprendizaje automático y animación
-                  web, y siempre busco formas de integrarlas en mis proyectos
-                  para crear soluciones innovadoras.
-                  <br /> Disfruto enfrentar retos técnicos y colaborar en
-                  equipos multidisciplinarios para llevar ideas creativas al
-                  siguiente nivel.
-                  <br />
-                  <br />
-                  Si tienes un proyecto interesante o simplemente quieres
-                  charlar sobre desarrollo web, ¡no dudes en contactarme!
-                </p>
-              </RevealOnScroll>
+                <div className="relative">
+                  <div className="min-h-[280px] relative overflow-y-auto overflow-x-hidden">
+                    {slidesContent.map((node, idx) => (
+                      <div
+                        key={idx}
+                        ref={(el) => (slideRefs.current[idx] = el)}
+                        className="absolute inset-0 w-full"
+                        style={{ display: idx === active ? "block" : "none" }}
+                        aria-hidden={idx !== active}
+                      >
+                        {node}
+                      </div>
+                    ))}
+                  </div>
 
-              <RevealOnScroll delay={0.3}>
-                <Button size="lg" className="group" onClick={handleViewCV}>
-                  <View className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                  Ver CV
-                </Button>
+
+
+
+                </div>
               </RevealOnScroll>
             </div>
           </div>

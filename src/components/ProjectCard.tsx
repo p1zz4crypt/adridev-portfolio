@@ -7,6 +7,7 @@ interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
+  isVideo?: boolean; // Nuevo prop para indicar si es un video
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -19,6 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
   image,
+  isVideo = false,
   tags,
   liveUrl,
   githubUrl,
@@ -60,7 +62,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 bg-secondary text-foreground text-sm rounded-full"
+              className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100"
             >
               {tag}
             </span>

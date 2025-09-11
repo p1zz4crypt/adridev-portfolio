@@ -91,8 +91,8 @@ const HeroSection: React.FC = () => {
   return (
     <>
       <Seo 
-        title="Adriana Rosas | Frontend Developer"
-        description="Desarrolladora Frontend con experiencia en React, TypeScript y tecnologías modernas"
+        title="Adriana Rosas | Front-end Developer focused on UX & AI Workflows"
+        description="Desarrolladora Frontend, creo prototipos rápidos que unen datos, creativos y automatizaciones para e-commerce"
         type="profile"
         image="/public/og-image.png"
       />
@@ -102,15 +102,17 @@ const HeroSection: React.FC = () => {
         
         <div className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div>
-            <h1 ref={titleRef} className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <div className=''>
+
+            <h1 ref={titleRef} className="text-4xl sm:text-5xl lg:text-8xl font-bold mb-2 leading-tight">
               <span className="block" style={isMobile ? {} : { opacity: 0 }}>Adriana</span>
               <span className="block" style={isMobile ? {} : { opacity: 0 }}>Rosas</span>
             </h1>
-            
-            <p className="text-muted-foreground text-lg mb-8 max-w-lg text-foreground dark:text-foreground">
-              Front-end Developer con 6 años de experiencia en el desarrollo de
-              aplicaciones web modernas con JavaScript y React.
+            <p className="text-muted-foreground text-lg mb-8 max-w-lg text-foreground  dark:text-foreground">
+               Front-end Developer focused on <br /> UX & AI Workflows
             </p>
+            </div>
+            
           </div>
 
           {isMobile ? <StaticPlaceholder /> : <OptimizedVideo />}
