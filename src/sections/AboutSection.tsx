@@ -261,7 +261,7 @@ const AboutSection: React.FC = () => {
                     <div
                       key={idx}
                       ref={(el) => (imageRefs.current[idx] = el)}
-                      className="absolute inset-0 m-auto w-4/6 h-[400px] max-w-[500px]  rounded-xl overflow-hidden shadow-lg parallax cursor-pointer"
+                      className="absolute inset-0 m-auto  h-full w-full  rounded-xl overflow-hidden  parallax cursor-pointer"
                       style={{
                         pointerEvents: idx === active ? "auto" : "none",
                         zIndex: idx === active ? 20 : 10,

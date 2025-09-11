@@ -73,7 +73,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {liveUrl && (
             <button
               onClick={onLiveDemoClick} // Usamos la función onLiveDemoClick
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              className="flex items-center py-2 px-4 gap-2 text-foreground bg-violet-500 text-white hover:text-primary transition-colors rounded-full"
             >
            
               <span className="font-semibold">+ info</span>
