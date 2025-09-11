@@ -28,7 +28,7 @@ import Maxi6 from "../assets/img/projects/maxi/maxi6.webp"
 import DataHooks from "../assets/img/projects/dh/dh.png"
 import DataInter from "../assets/img/projects/dh/dha.png"
 import DataInter2 from "../assets/img/projects/dh/dha2.png"
-import Gomore from "../assets/img/projects/dh/gomore.png"
+import Gomore from "../assets/img/projects/dh/red_gomore.png"
 // Vídeos - Import ejemplos de video (reemplazar con tus videos reales)
 import videoDemo from "../assets/video.webm"
 import Research from "../assets/img/projects/dh/research.png"
