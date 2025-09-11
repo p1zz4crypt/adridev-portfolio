@@ -134,7 +134,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
-            <div className="bg-white/90 dark:bg-gray-800/90 rounded-lg max-w-6xl mx-4 flex flex-col shadow-2xl backdrop-blur-sm" style={{ maxHeight: '90vh', height: '90vh', width: '100%' }}>
+            <div className="bg-white/90 dark:bg-gray-800/90 rounded-lg max-w-6xl mx-4 flex flex-col shadow-2xl backdrop-blur-sm" style={{ maxHeight: '95vh', height: '95vh', width: '100%' }}>
                 {/* Cabecera fija con efecto glass */}
                 <div className="px-6 py-4 border-b border-gray-200/30 dark:border-gray-700/30 backdrop-blur-md bg-white/80 dark:bg-gray-800/80 rounded-t-lg">
                     <div className="flex justify-between items-center">
@@ -161,7 +161,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
                         >
                             {project.images.map((image, index) => (
-                                <div key={index} className="w-full flex-shrink-0 relative h-full">
+                                <div key={index} className="w-full flex-shrink-0 relative h-full pb-28">
                                     <div className="h-full overflow-auto px-4 py-2 pb-20 group">
                                         <div className=" rounded-lg flex justify-center cursor-zoom-in relative" onClick={() => handleImageClick(image.url, image.isVideo)}>
                                             {image.isVideo ? (
@@ -216,7 +216,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                 )}
 
                 {/* Pie fijo con la descripción de la imagen - Efecto Glassmorphism */}
-                <div className="px-6 w-full py-8 border-t border-gray-200/30 dark:border-gray-700/30 backdrop-blur-md bg-white/70 dark:bg-gray-800/70 absolute bottom-5 shadow-lg rounded-b-lg z-10">
+                <div className="px-6 w-full py-8 border-t border-gray-200/30 dark:border-gray-700/30 backdrop-blur-md bg-white/70 dark:bg-gray-800/70 absolute bottom-0 shadow-lg rounded-b-lg z-10">
                     <p className="text-center text-gray-700 dark:text-gray-300 font-medium">
                         {project.images[currentImageIndex]?.description || ''}
                     </p>
