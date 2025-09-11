@@ -28,7 +28,7 @@ import Maxi6 from "../assets/img/projects/maxi/maxi6.webp"
 import DataHooks from "../assets/img/projects/dh/dh.png"
 import DataInter from "../assets/img/projects/dh/dha.png"
 import DataInter2 from "../assets/img/projects/dh/dha2.png"
-import Gomore from "../assets/img/projects/dh/red_gomore.png"
+import Gomitas from "../assets/img/projects/dh/red_gomore.png"
 // Vídeos - Import ejemplos de video (reemplazar con tus videos reales)
 import videoDemo from "../assets/video.webm"
 import Research from "../assets/img/projects/dh/research.png"
@@ -73,7 +73,7 @@ const ProjectsSection: React.FC = () => {
       liveUrl: "#",
       images: [
         {
-          url: Gomore,
+          url: Gomitas,
           description: "Rediseño y construcción de tienda en Shopify: UI/UX de páginas de producto y colección, implementación de theme (Liquid, OS 2.0), maquetado responsive y prototipos funcionales para tests A/B."
         },
 
