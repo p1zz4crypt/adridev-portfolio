@@ -184,7 +184,6 @@ const ProjectsSection: React.FC = () => {
             title={project.title}
             description={project.description}
             image={project.image}
-            isVideo={project.isVideo}
             tags={project.tags}
             liveUrl={project.liveUrl}
             reversed={index % 2 === 1}
