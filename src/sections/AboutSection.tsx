@@ -234,7 +234,7 @@ const AboutSection: React.FC = () => {
   const isLast = active === slidesContent.length - 1;
 
   const handleViewCV = () => {
-    const pdfUrl = "/CV-Adriana-Rosas-2025.pdf";
+    const pdfUrl = "/CV2025.pdf";
     window.open(pdfUrl, "_blank");
   };
 
