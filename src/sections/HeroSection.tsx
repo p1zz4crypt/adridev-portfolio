@@ -91,8 +91,8 @@ const HeroSection: React.FC = () => {
   return (
     <>
       <Seo 
-        title="Adriana Rosas | Front-end Developer focused on UX & AI Workflows"
-        description="Desarrolladora Frontend, creo prototipos rápidos que unen datos, creativos y automatizaciones para e-commerce"
+        title="Adriana Rosas"
+        description=" Front-end Developer | Diseño UX/UI & AI Workflows | Tecnología Blockchain"
         type="profile"
         image="/public/og-image.png"
       />
@@ -109,7 +109,7 @@ const HeroSection: React.FC = () => {
               <span className="block" style={isMobile ? {} : { opacity: 0 }}>Rosas</span>
             </h1>
             <p className="text-muted-foreground text-lg mb-8 max-w-lg text-foreground  dark:text-foreground">
-               Front-end Developer focused on <br /> UX & AI Workflows
+               Front-end Developer | Diseño UX/UI & AI Workflows | Tecnología Blockchain
             </p>
             </div>
             
