@@ -118,18 +118,6 @@ const ProjectsSection: React.FC = () => {
         { url: Maxi6, description: 'Reacción y diseño de paper informativo en Canva.' },
       ]
     },
-    {
-      title: 'TLegal',
-      description: 'Proyecto de automatización de contratos legales.',
-      image: TiendaLegal, 
-      tags: ['Vue', 'GraphQL', 'Vuetify', 'Vuex',],
-      liveUrl: '#',
-      images: [
-        { url: TiendaLegal2, description: 'Apoyo en el desarrollo de la interfaz.' },
-        { url: TiendaLegal3, description: 'Apoyo en el desarrollo de la interfaz.' },
-        { url: TiendaLegal4, description: 'Apoyo en el desarrollo de la interfaz.' },
-      ]
-    }
   ];
 
   const handleLiveDemoClick = (project: {
