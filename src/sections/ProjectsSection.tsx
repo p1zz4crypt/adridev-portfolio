@@ -34,6 +34,7 @@ import videoDemo from "../assets/video.webm"
 import Research from "../assets/img/projects/dh/research.png"
 import Wuffes from "../assets/img/projects/dh/wuffes2_evenlabs.mp4"
 import Wfs from "../assets/img/projects/dh/wfs1.mp4"
+import Nike from "../assets/img/projects/dh/Nike.mp4"
 
 import { Seo } from '@/Seo';
 
@@ -84,6 +85,11 @@ const ProjectsSection: React.FC = () => {
         {
           url: Research,
           description: "Colaboro en la investigación de herramientas con el fin de automatizar la producción de creativos con IA: masterización de prompts, generación de avatares con voz (ElevenLabs / HeyGen), pipelines de imagen/video con Runway, RoboNeo, ImageFX y Nano Banana; creación de assets y videos para pruebas publicitarias."
+        },
+        {
+          url: Nike,
+          isVideo: true,
+          description: "Ejemplo de video de marca producido con NanoBanana, Freepik, Hailuo, Capcut."
         },
         {
           url: Wuffes,
