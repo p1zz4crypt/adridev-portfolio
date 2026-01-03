@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -28,7 +29,7 @@ import DataHooks from "../assets/img/projects/dh/dh.png"
 import DataInter from "../assets/img/projects/dh/dha.png"
 import DataInter2 from "../assets/img/projects/dh/dha2.png"
 import Gomitas from "../assets/img/projects/dh/red_gomore.png"
-// Vídeos
+// Vídeos - Import ejemplos de video (reemplazar con tus videos reales)
 import videoDemo from "../assets/video.webm"
 import Research from "../assets/img/projects/dh/research.png"
 import Wuffes from "../assets/img/projects/dh/wuffes2_evenlabs.mp4"
@@ -41,24 +42,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const projectCardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  
   const [selectedProject, setSelectedProject] = useState<{
     title: string;
     liveUrl: string;
     description: string;
     images: { url: string; description: string }[];
   } | null>(null);
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [clickedCardIndex, setClickedCardIndex] = useState<number | null>(null);
 
   const projects = [
     {
       title: "Datahooks",
-      description: `Plataforma de analítica y operaciones para e-commerce. Implementaciones, conexión con API, investigación y prototipado de tiendas Shopify. Creación de pipelines de media generativa y avatares con voz para creativos, documentación de POCs y resultados para adopción interna.`,
+      description: `Plataforma de analítica y operaciones para e-commerce. Implementaciones, conexión con API, investigación y prototipado de tiendas Shopify. Creación de pipelines de media generativa y avatares con voz para creativos,  documentación de POCs y resultados para adopción interna.`,
       image: DataHooks,
-      
       tags: [
         "Vue 3",
         "Vuex",
@@ -81,6 +77,7 @@ const ProjectsSection: React.FC = () => {
           url: Gomitas,
           description: "Rediseño y construcción de tienda en Shopify: UI/UX de páginas de producto y colección, implementación de theme (Liquid, OS 2.0), maquetado responsive y prototipos funcionales para tests A/B."
         },
+
         {
           url: DataInter2,
           description: "Colaboración en la creación de dashboards interactivos con Vue 3 y Chart.js destinados a monitorizar precios, promos y KPIs."
@@ -104,6 +101,7 @@ const ProjectsSection: React.FC = () => {
           isVideo: true,
           description: "Ejemplo de video producido con ElevenLabs - Demo de avatares digitales con voces generadas por IA."
         },
+      
       ]
     },
     {
@@ -127,100 +125,17 @@ const ProjectsSection: React.FC = () => {
     liveUrl: string;
     description: string;
     images: { url: string; description: string }[];
-  }, index: number) => {
-    setClickedCardIndex(index);
-    const clickedCard = projectCardsRef.current[index];
-    
-    if (clickedCard) {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setSelectedProject(project);
-          setIsModalOpen(true);
-        }
-      });
-
-      // Animación creativa: "Explosión de píxeles" con rotación 3D
-      // 1. La tarjeta clickeada hace un "zoom in" con rotación
-      tl.to(clickedCard, {
-        scale: 1.5,
-        rotationY: 0,
-        z: 100,
-        duration: 0.4,
-        ease: "power2.out"
-      });
-
-      // 2. Todas las demás tarjetas se dispersan en diferentes direcciones
-      projectCardsRef.current.forEach((card, i) => {
-        if (card && i !== index) {
-          const direction = i < index ? -1 : 1; // Izquierda o derecha según posición
-          const isTop = i === 0;
-          const isBottom = i === projectCardsRef.current.length - 1;
-          
-          tl.to(card, {
-            x: direction * 800, // Se mueven horizontalmente
-            y: isTop ? -300 : isBottom ? 300 : 0, // Movimiento vertical adicional
-            rotation: direction * 5, // Rotación mientras se van
-            opacity: 0,
-            scale: 0.7,
-            duration: 0.4,
-            ease: "power3.in"
-          }, "-=0.5"); // Overlap con animación anterior
-        }
-      });
-
-      // 3. La tarjeta clickeada explota en fragmentos (simulado con scale y opacity)
-      tl.to(clickedCard, {
-        scale: 1.5,
-        opacity: 0,
-        rotationY: 180,
-        filter: "blur(20px)",
-        duration: 0.4,
-        ease: "power2.in"
-      }, "-=0.2");
-
-    } else {
-      setSelectedProject(project);
-      setIsModalOpen(true);
-    }
+  }) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    // Animación de regreso: Las tarjetas vuelven con efecto de "materialize"
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setIsModalOpen(false);
-        setSelectedProject(null);
-        setClickedCardIndex(null);
-      }
-    });
-
-    projectCardsRef.current.forEach((card, i) => {
-      if (card) {
-        tl.fromTo(card,
-          {
-            x: i % 2 === 0 ? -800 : 800,
-            y: i === 0 ? -100 : i === projectCardsRef.current.length - 1 ? 100 : 0,
-            rotation: i % 2 === 0 ? -5 : 5,
-            opacity: 0,
-            scale: 0.8,
-            rotationY: 0,
-            z: 0,
-            filter: "blur(0px)"
-          },
-          {
-            x: 0,
-            y: 0,
-            rotation: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.4,
-            ease: "power3.out(1.4)"
-          },
-          i * 0.1 
-        );
-      }
-    });
+    setIsModalOpen(false);
+    setSelectedProject(null);
   };
+
+
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -237,44 +152,48 @@ const ProjectsSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
+
   return (
     <>
-      <Seo 
-        title="Sobre Adri Rosas | Experiencia y Habilidades"
-        description="Front End Developer | Diseño UI | Tecnología Blockchain"
-        type="profile"
-        image="/public/og-image.png"
-      />
-      <section id="projects" ref={sectionRef} className="bg-gradient-section-4 dark:bg-gradient-section-4-dark">
-        {/* Grid sin gaps - ocupa toda la pantalla */}
-        <div className='grid md:grid-cols-2 md:min-h-screen h-[500px]'>
+   <Seo 
+           title=" Sobre Adri Rosas| Experiencia y Habilidades"
+           description="Front End Developer | Diseño UI | Tecnología Blockchain"
+           type="profile"
+           image="/public/og-image.png"
+         />
+    <section id="projects" ref={sectionRef} className="bg-gradient-section-4 dark:bg-gradient-section-4-dark">
+      <div className='section-container py-24 '>
+        <SectionTitle
+          subtitle=""
+          title="Proyectos Relevantes"
+          description="Algunos proyectos que representaron un gran reto a nivel profesional"
+          center={true}
+          className="text-foreground dark:text-foreground"
+        />
+
+        <div className="space-y-24 md:space-y-0 md:mt-16 mt-0 md:h-full h-[250px]" >
           {projects.map((project, index) => (
-            <div 
-              key={index}
-              ref={(el) => (projectCardsRef.current[index] = el)}
-              className="w-full md:h-full h-[250px]"
-              style={{ perspective: '1000px' }} // Para efectos 3D
-            >
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                tags={project.tags}
-                liveUrl={project.liveUrl}
-                reversed={index % 2 === 1}
-                onLiveDemoClick={() => handleLiveDemoClick(project, index)}
-              />
-            </div>
+            <ProjectCard
+            key={index}
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            tags={project.tags}
+            liveUrl={project.liveUrl}
+            reversed={index % 2 === 1}
+            onLiveDemoClick={() => handleLiveDemoClick(project)}
+            />
           ))}
         </div>
-        {selectedProject && (
-          <ProjectModal
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-            project={selectedProject}
-          />
-        )}
-      </section>
+      </div>
+      {selectedProject && (
+        <ProjectModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          project={selectedProject}
+        />
+      )}
+    </section>
     </>
   );
 };

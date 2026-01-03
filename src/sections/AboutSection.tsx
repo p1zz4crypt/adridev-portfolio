@@ -26,7 +26,7 @@ const AboutSection: React.FC = () => {
     // Slide 1: skills with badges (your provided markup)
     (
       <div>
-        <p className="mb-4 text-muted-foreground dark:text-foreground">
+        <p className="text-sm md:text-lg mb-4 text-muted-foreground dark:text-foreground">
           Soy Adriana Rosas, vivo en CDMX. <br />
           Desde hace 7 años me dedico al desarrollo front end creando interfaces intuitivas, participando en las etapas de:
         </p>
@@ -37,8 +37,8 @@ const AboutSection: React.FC = () => {
             <div className="flex-1">
               Diseño de interfaz y prototipos prácticos en
               <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Figma</span>
-                <span aria-label="Adobe XD" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Adobe XD</span>
+                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Figma</span>
+                <span aria-label="Adobe XD" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Adobe XD</span>
               </div>
             </div>
           </li>
@@ -48,12 +48,12 @@ const AboutSection: React.FC = () => {
             <div className="flex-1">
               Creación y modificación de elementos visuales y generación de imagen con IA:
               <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Photoshop" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Photoshop</span>
-                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Figma</span>
-                <span aria-label="Leonardo AI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Leonardo AI</span>
-                <span aria-label="Stable Diffusion" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Stable Diffusion</span>
-                <span aria-label="ImageFX" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">ImageFX</span>
-                <span aria-label="Nano Banana" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Nano Banana</span>
+                <span aria-label="Photoshop" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Photoshop</span>
+                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Figma</span>
+                <span aria-label="Leonardo AI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Leonardo AI</span>
+                <span aria-label="Stable Diffusion" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Stable Diffusion</span>
+                <span aria-label="ImageFX" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">ImageFX</span>
+                <span aria-label="Nano Banana" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Nano Banana</span>
               </div>
             </div>
           </li>
@@ -63,10 +63,10 @@ const AboutSection: React.FC = () => {
             <div className="flex-1">
               Maquetación responsiva con
               <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="CSS" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">CSS</span>
-                <span aria-label="Tailwind" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Tailwind</span>
-                <span aria-label="Material-UI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Material-UI</span>
-                <span aria-label="Bootstrap" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Bootstrap</span>
+                <span aria-label="CSS" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">CSS</span>
+                <span aria-label="Tailwind" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Tailwind</span>
+                <span aria-label="Material-UI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Material-UI</span>
+                <span aria-label="Bootstrap" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Bootstrap</span>
               </div>
             </div>
           </li>
@@ -76,9 +76,9 @@ const AboutSection: React.FC = () => {
             <div className="flex-1">
               Desarrollo de aplicaciones web con
               <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Vue" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Vue</span>
-                <span aria-label="React" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">React</span>
-                <span aria-label="JavaScript" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">JavaScript</span>
+                <span aria-label="Vue" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Vue</span>
+                <span aria-label="React" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">React</span>
+                <span aria-label="JavaScript" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">JavaScript</span>
               </div>
             </div>
           </li>
@@ -88,8 +88,8 @@ const AboutSection: React.FC = () => {
             <div className="flex-1">
               Conexión con APIs y bases de datos usando
               <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Insomnia" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">Insomnia</span>
-                <span aria-label="GraphQL" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100">GraphQL</span>
+                <span aria-label="Insomnia" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Insomnia</span>
+                <span aria-label="GraphQL" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">GraphQL</span>
               </div>
             </div>
           </li>
@@ -99,17 +99,17 @@ const AboutSection: React.FC = () => {
 
     // Slide 2: long paragraph (your provided text)
     (
-      <div>
+      <div className="text-sm md:text-lg">
         <p className="mb-4 text-muted-foreground dark:text-foreground">
           Antes de ser desarrolladora, fui cocinera durante 7 años. Esa experiencia y mentalidad práctica, colaborativa y orientada al resultado sigue guiando mi trabajo.
           <br />
           <br />
-          Esa combinación de aptitudes + un gran deseo de aprender, me brindaron la oportunidad de colaborar en la implementación de <span className="font-black text-violet-500">Blockchain</span>  en el despacho de Auditoría "Ferrer y Asociados", de <span className="font-black text-violet-500">Grupo Salinas</span>.
+          Esa combinación de aptitudes + un gran deseo de aprender, me brindaron la oportunidad de colaborar en la implementación de <span className="font-black text-black">Blockchain</span>  en el despacho de Auditoría "Ferrer y Asociados", de <span className="font-black text-black">Grupo Salinas</span>.
         </p>
 
         <p className="mb-4 text-muted-foreground dark:text-foreground">
           Afortunadamente la vida es cíclica y yo aprovecho cada vuelta para aprender y construir. Actualmente estoy enfocada en aprender desarrollo de tiendas en Shopify y en crear y escalar POCs que unan datos, 
-          creativos generativos <span className="font-black text-violet-500">(Runway, HeyGen, ElevenLabs, RoboNeo, Veo3)</span>, edición en <span className="font-black text-violet-500">CapCut</span> y automatizaciones con diversas herramientas.
+          creativos generativos <span className="font-black text-black">(Runway, HeyGen, ElevenLabs, RoboNeo, Veo3)</span>, edición en <span className="font-black text-black">CapCut</span> y automatizaciones con diversas herramientas.
         </p>
       </div>
     ),
@@ -117,7 +117,7 @@ const AboutSection: React.FC = () => {
     // Slide 3: contact call
     (
       <div>
-        <p className="mb-4 text-3xl text-center text-muted-foreground dark:text-foreground">
+        <p className="mb-4 text-lg md:text-3xl text-center text-muted-foreground dark:text-foreground">
           Si tienes un proyecto interesante o simplemente quieres charlar sobre el maravilloso mundo de la tecnología, ¡no dudes en contactarme!
         </p>
         <div className="w-full flex justify-center mt-5">
@@ -249,13 +249,13 @@ const AboutSection: React.FC = () => {
       <section
         id="about"
         ref={(el) => (sectionRef.current = el)}
-        className="w-full bg-gradient-section-2 dark:bg-gradient-section-2-dark"
+        className="w-full bg-[#F3EFEA] dark:bg-gradient-section-2-dark"
       >
         <div className="section-container py-24 relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* LEFT: images */}
             <div className="relative " ref={(el) => (leftRef.current = el)}>
-              <div className="flex flex-col h-[500px] ">
+              <div className="flex flex-col h-[200px] md:h-[500px] ">
                 <div>
                   {images.map((src, idx) => (
                     <div
@@ -281,7 +281,7 @@ const AboutSection: React.FC = () => {
               <div className="flex justify-center w-full  gap-3 absolute  z-50 mt-6">
                 <RevealOnScroll delay={0.3}>
                   <div className=" mr-">
-                    <Button size="lg" className="group bg-violet-600" onClick={handleViewCV}>
+                    <Button size="lg" className="group bg-black" onClick={handleViewCV}>
                       <View className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
                       Ver CV
                     </Button>
@@ -291,21 +291,21 @@ const AboutSection: React.FC = () => {
                 <div className="flex justify-center">
                   <button
                     onClick={goPrev}
-                    className={`px-5 mr-3 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-300
+                    className={`px-5 mr-3 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300
                       ${isFirst
-                        ? ' border-purple-400'
-                        : 'bg-gradient-section-3 dark:bg-gradient-section-3-dark hover:border-purple-400'}`}
+                        ? ' border-black'
+                        : 'bg-[#F3EFEA] dark:bg-gradient-section-3-dark hover:border-black'}`}
                   >
-                    <ArrowLeft className={`w-6 h-6 ${isFirst ? 'text-purple-700' : 'text-primary hover:text-purple-700'}`} />
+                    <ArrowLeft className={`w-6 h-6 ${isFirst ? 'text-black' : 'text-primary hover:text-black'}`} />
                   </button>
                   <button
                     onClick={goNext}
-                    className={`px-5 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-300
+                    className={`px-5 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-black
                       ${isLast
-                        ? ' border-purple-400'
-                        : 'bg-gradient-section-3 dark:bg-gradient-section-3-dark hover:border-purple-400'}`}
+                        ? ' border-black'
+                        : 'bg-[#F3EFEA] dark:bg-gradient-section-3-dark hover:border-gray-400'}`}
                   >
-                    <ArrowRight className={`w-6 h-6 ${isLast ? 'text-purple-700' : 'text-primary hover:text-purple-700'}`} />
+                    <ArrowRight className={`w-6 h-6 ${isLast ? 'text-black' : 'text-primary hover:text-black'}`} />
                   </button>
                 </div>
 
@@ -313,7 +313,7 @@ const AboutSection: React.FC = () => {
             </div>
 
             {/* RIGHT: slides */}
-            <div className="mt-28 md:mt-0">
+            <div className="md:mt-28 mt-16">
               <SectionTitle
                 subtitle="Acerca de mi"
                 title={
@@ -324,7 +324,7 @@ const AboutSection: React.FC = () => {
                         onClick={() => goto(s.id)}
                         aria-label={`Ir a ${s.title}`}
                         aria-current={s.id === active} 
-                        className={`w-3 h-1 px-4  rounded-full transition-all ${s.id === active ? "bg-violet-700" : "bg-violet-100 dark:bg-violet-600"}`}
+                        className={`w-3 h-1 px-4  rounded-full transition-all ${s.id === active ? "bg-black" : "bg-gray-300 dark:bg-black"}`}
                       />
                     ))}
                   </div>
@@ -335,7 +335,7 @@ const AboutSection: React.FC = () => {
 
               <RevealOnScroll>
                 <div className="relative">
-                  <div className="min-h-[280px] relative overflow-y-auto overflow-x-hidden">
+                  <div className="md:min-h-[500px] min-h-[450px] text-sm md:text-lg relative overflow-y-auto overflow-x-hidden">
                     {slidesContent.map((node, idx) => (
                       <div
                         key={idx}

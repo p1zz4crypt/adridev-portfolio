@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { gsap } from 'gsap';
 
 interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  isVideo?: boolean; // Nuevo prop para indicar si es un video
+  isVideo?: boolean;
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
   reversed?: boolean;
   className?: string;
-  onLiveDemoClick: () => void; // Definición correcta de la prop
+  onLiveDemoClick: () => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -26,74 +27,72 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   githubUrl,
   reversed = false,
   className,
-  onLiveDemoClick, // Recibimos la prop
+  onLiveDemoClick,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Detectar si es dispositivo móvil o pantalla pequeña
+  useEffect(() => {
+    const checkIfMobile = () => {
+      // Opción 1: Por ancho de pantalla
+      const isMobileWidth = window.innerWidth < 768; // md breakpoint de Tailwind
+
+      // Opción 2: Por capacidad táctil
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      // Usar ambas condiciones
+      setIsMobile(isMobileWidth || isTouchDevice);
+    };
+
+    // Verificar al montar
+    checkIfMobile();
+
+    // Verificar al redimensionar
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
+  useEffect(() => {
+    // Si es mobile, podrías querer dejarlo fijo en 0.4 o 1
+    if (!overlayRef.current || isMobile) return;
+
+    gsap.to(overlayRef.current, {
+      // CAMBIO AQUÍ: isHovered ? 1 (oscuro) : 0.4 (claro)
+      opacity: isHovered ? 0.4 : 1,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  }, [isHovered, isMobile]);
+
   return (
-    <motion.div
+    <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
+        "relative w-full h-full overflow-hidden cursor-pointer",
         className
       )}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6 }}
+      // Solo aplicar hover events si NO es mobile
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
+      onClick={onLiveDemoClick}
     >
-      <div className={reversed ? 'md:order-2' : ''}>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-          className="animated-border"
-        >
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-auto rounded-xl object-cover aspect-video"
-            loading="lazy"
-          />
-        </motion.div>
-      </div>
+      {/* Imagen de fondo que ocupa todo el espacio */}
+      <img
+        src={image}
+        alt={title}
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+      />
 
-      <div className={reversed ? 'md:order-1' : ''}>
-        <h3 className="text-2xl md:text-3xl font-semibold mb-3">{title}</h3>
-        <p className="text-muted-foreground mb-4 dark:text-foreground">{description}</p>
-
-        <div className="flex flex-wrap gap-2 mb-6">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-violet-500 border border-blue-100"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-4">
-          {liveUrl && (
-            <button
-              onClick={onLiveDemoClick} // Usamos la función onLiveDemoClick
-              className="flex items-center py-2 px-4 gap-2 text-foreground bg-violet-500 text-white hover:text-primary transition-colors rounded-full"
-            >
-           
-              <span className="font-semibold">+ info</span>
-            </button>
-          )}
-
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
-            >
-              <Github size={18} />
-              <span>Source Code</span>
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
+      {/* Overlay con opacidad variable */}
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-black"
+        style={{ opacity: 0.4 }}
+      />
+    </div>
   );
 };
 

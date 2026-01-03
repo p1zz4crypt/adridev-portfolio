@@ -101,6 +101,21 @@ const HeroSection: React.FC = () => {
         {isMobile ? null : <ParticleBackground particleCount={20} />}
         
         <div className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
+
+           <div className="w-full flex md:flex-col flex-row justify-center items-center">
+        <div className="hidden md:flex justify-center items-center " style={marcoStyle} >
+          
+          {/* 
+          <img
+            src={Gif}
+            className=" rounded-xl"
+            alt="animacion"
+            style={gifStyle}
+          />
+*/}
+          
+        </div>
+      </div>
           <div>
             <div className=''>
 
