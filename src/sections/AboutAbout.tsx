@@ -16,7 +16,7 @@ import Img11 from "../assets/img/about/11.jpeg";
 import Img12 from "../assets/img/about/12.jpeg";
 import RocketIcon from "../assets/img/rocket.png";
 import OrbitIcon from "../assets/img/orbit.png";
-import Fondito from '../assets/img/about/03 - Alfheim Forest.png';
+import Fondito from "../assets/img/about/03 - Alfheim Forest.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,11 +60,10 @@ const AboutAbout = () => {
     return () => ctx.revert();
   }, []);
 
-    const handleViewCV = () => {
+  const handleViewCV = () => {
     const pdfUrl = "/CV2025.pdf";
     window.open(pdfUrl, "_blank");
   };
-
 
   return (
     <>
@@ -565,7 +564,6 @@ background-image: linear-gradient(
       `}</style>
 
       <section className="about-section">
-        
         {/* Rocket con adornos */}
         <div className="icon-container rocket-container mt-4">
           <div className="rocket-glow" />
@@ -585,8 +583,10 @@ background-image: linear-gradient(
 
         {/* Orbit con adornos */}
 
-
-        <div onClick={handleViewCV}  className="icon-container orbit-container mt-4 cursor-pointer z-50" >
+        <div
+          onClick={handleViewCV}
+          className="icon-container orbit-container mt-4 cursor-pointer z-50"
+        >
           <div className="orbit-glow" />
           <div className="orbit-ring" />
           <div className="orbit-dots">
@@ -602,42 +602,40 @@ background-image: linear-gradient(
             aria-hidden="true"
           />
           <div className="flex flex-col items-center ">
+            <p
+              className="cursor-pointer hover:font-bold text-4xl md:text-sm"
+              style={{
+                fontFamily: "'Space Mono', monospace",
 
-           <p
-                className="cursor-pointer hover:font-bold text-4xl md:text-sm"
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-              
-                  letterSpacing: "0.2em",
-                  color: "#71E300",
-                  textTransform: "uppercase",
-                  whiteSpace: "nowrap",
-                  textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
-                }}
-              >
-                DESCARGA 
-              </p>
-              <p
-                className="cursor-pointer hover:font-bold text-4xl md:text-sm"
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-             
-                  letterSpacing: "0.2em",
-                  color: "#71E300",
-                  textTransform: "uppercase",
-                  whiteSpace: "nowrap",
-                  textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
-                }}
-              >
-                MI CV
-              </p>
+                letterSpacing: "0.2em",
+                color: "#71E300",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+                textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+              }}
+            >
+              DESCARGA
+            </p>
+            <p
+              className="cursor-pointer hover:font-bold text-4xl md:text-sm"
+              style={{
+                fontFamily: "'Space Mono', monospace",
+
+                letterSpacing: "0.2em",
+                color: "#71E300",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+                textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+              }}
+            >
+              MI CV
+            </p>
           </div>
         </div>
-  
 
         {/* Texto con scroll */}
         <div className="text-contain" ref={textContainRef}>
-          <div className="w-1/3 text-left md:text-right md:top-36 top-0  block md:fixed" >
+          <div className="w-1/3 text-left md:text-right md:top-36 top-0  block md:fixed">
             <Link to={"/"}>
               <p
                 className="cursor-pointer hover:font-bold"
@@ -658,13 +656,14 @@ background-image: linear-gradient(
           <h2
             style={{
               fontFamily: "'Roboto Condensed', sans-serif",
-              fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+              fontSize: "clamp(2.5rem, 8vw, 5rem)",
               fontWeight: 900,
-              letterSpacing: '0.1em',
-              background: 'linear-gradient(135deg, #71E300 0%, #71E300 50%, #71E300 100%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
+              letterSpacing: "0.1em",
+              background:
+                "linear-gradient(135deg, #71E300 0%, #71E300 50%, #71E300 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
               margin: 0,
               lineHeight: 1.1,
             }}
@@ -687,10 +686,8 @@ background-image: linear-gradient(
           </p>
           <p className="text-white/70">
             Mi interés por la tecnología despertó en 2019 al escuchar sobre{" "}
-            <span className="font-medium">
-              la tecnología blockchain
-            </span>
-            . Esa curiosidad fue el motor que me llevó a{" "}
+            <span className="font-medium">la tecnología blockchain</span>. Esa
+            curiosidad fue el motor que me llevó a{" "}
             <mark className="text-highlight">
               dar el salto hacia una nueva carrera
             </mark>
