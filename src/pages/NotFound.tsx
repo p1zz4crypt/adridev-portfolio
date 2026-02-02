@@ -44,11 +44,11 @@ const NotFound: React.FC = () => {
 
   return (
     <>
-    <Seo 
-            title=" Sobre Adri Rosas| Experiencia y Habilidades"
-            description="Front End Developer | Diseño UI | Tecnología Blockchain"
+    <Seo
+            title=" Sobre Adriana Rosas| Experiencia y Habilidades"
+            description="Front End Developer / Diseño UX/UI & AI Workflows"
             type="profile"
-            image="/images/og-me.png"
+            image="/public/ad3.png"
           />
     
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-background to-secondary/30 px-4">

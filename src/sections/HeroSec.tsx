@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 interface ScrollTransitionProps {
   children?: React.ReactNode;
   modelUrl?: string;
+  onContactClick?: () => void;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -206,7 +207,7 @@ function FloatingParticles3D() {
       </bufferGeometry>
       <pointsMaterial
         size={0.05}
-        color="#ec4899"
+        color="#71E300"
         transparent
         opacity={0.8}
         sizeAttenuation
@@ -215,7 +216,7 @@ function FloatingParticles3D() {
   );
 }
 
-const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl = "/spaceship.glb" }) => {
+const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl = "/spaceship.glb", onContactClick }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -369,7 +370,7 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
     left: `${10 + Math.random() * 80}%`,
     top: `${20 + Math.random() * 60}%`,
     size: 4 + Math.random() * 8,
-    color: i % 3 === 0 ? '#ec4899' : i % 3 === 1 ? '#8b5cf6' : '#3b82f6'
+    color: i % 3 === 0 ? '#71E300' : i % 3 === 1 ? '#8b5cf6' : '#3b82f6'
   }));
 
   // Generar líneas warp
@@ -516,7 +517,7 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
               textShadow: '0 0 20px rgba(236, 72, 153, 0.5)'
             }}
           >
-            Frontend Developer / AI / Creative Tech
+            Front End Developer / Diseño UX/UI & AI Workflows
           </p>
           <h2
             style={{
@@ -567,15 +568,16 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
                 Sobre mi
               </p>
             </Link>
-            <button className='hover:shadow-none cursor-none '>
-              <Link to={'/about'}>
+            <button
+              className='hover:shadow-none bg-transparent border-none'
+              onClick={onContactClick}
+            >
               <p
                 className='text-white hover:font-bold hover:text-[#71E300]'
                 style={{
                   cursor: 'pointer',
                   fontFamily: "'Space Mono', monospace",
                   fontSize: 'clamp(0.8rem, 2vw, 1rem)',
-            
                   marginTop: '1.5rem',
                   maxWidth: '500px',
                   lineHeight: 1.6
@@ -583,7 +585,6 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
               >
                 Contacto
               </p>
-            </Link>
             </button>
           </div>
 

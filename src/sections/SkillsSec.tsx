@@ -327,15 +327,7 @@ const ProjectsNew: React.FC = () => {
                 if (box && i !== index) {
                     const direction = i < index ? -1 : 1;
 
-                    tl.to(box, {
-                        x: direction * 400,
-                        y: direction * 200,
-                        rotation: direction * 5,
-                        opacity: 0,
-                        scale: 0.7,
-                        duration: 0.4,
-                        ease: "power3.in"
-                    }, "-=0.3");
+                   
                 }
             });
 
@@ -459,7 +451,7 @@ const ProjectsNew: React.FC = () => {
                                 trigger: box,
                                 start: "top 85%",
                                 end: "top 50%",
-                                toggleActions: "play none none reverse"
+                                toggleActions: "play none none none"
                             }
                         }
                     );
@@ -490,11 +482,11 @@ const ProjectsNew: React.FC = () => {
     return (
         <>
             <Seo
-                title="Skills & Expertise | Adri Rosas"
-                description="Front End Developer | Diseño UI/UX | E-commerce | IA & Media Generativa | Blockchain"
-                type="profile"
-                image="/public/og-image.png"
-            />
+                    title=" Sobre Adriana Rosas| Experiencia y Habilidades"
+                    description="Front End Developer / Diseño UX/UI & AI Workflows"
+                    type="profile"
+                    image="/public/ad3.png"
+                  />
             {/* Fondo de nebulosas */}
             <NebulaBackground />
 
@@ -548,7 +540,8 @@ const ProjectsNew: React.FC = () => {
                                 className="group cursor-pointer perspective"
                             >
                                 {/* Card Container */}
-                                <div className="flex justify-center items-center relative overflow-hidden aspect-square transition-all duration-300">
+                                <div className="flex justify-center items-center relative overflow-hidden 
+    aspect-[4/3] md:aspect-square transition-all duration-300">
 
                                     {/* Fondo con imagen del proyecto (aparece en hover) */}
                                     <div
@@ -567,7 +560,7 @@ const ProjectsNew: React.FC = () => {
                                         <img
                                             src={skill.image}
                                             alt={skill.title}
-                                            className="w-56 opacity-100 group-hover:opacity-0 transition-opacity duration-300"
+                                            className="w-24 md:w-40 lg:w-56 opacity-100 group-hover:opacity-0 transition-opacity duration-300"
                                         />
                                         <h3 className="text-xl bg-black/70 px-2 backdrop-blur-md font-bold mb-6 text-[#71E300] group-hover:opacity-0 group-hover:text-white  transition-all duration-100">
                                             {skill.title}

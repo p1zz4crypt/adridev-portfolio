@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 interface SeoProps {
   title: string;
-  description: string;
+  description?: string;
   keywords?: string;
   url?: string;
   image?: string;
@@ -13,39 +13,39 @@ interface SeoProps {
 
 export function Seo({
   title,
-  description = "Portafolio profesional de Adriana Rosas - Desarrolladora Frontend especializada en React, TypeScript y tecnologías web modernas.",
-  keywords = "desarrollador javascript, programador react, frontend developer, Adri Rosas",
+  description = "Frontend Developer en CDMX. Integración de IA, desarrollo de productos digitales.",
+  keywords = "frontend developer, creative developer, react, vue, GSAP, animaciones web, AI integration, product builder, desarrollador web CDMX, Adriana Rosas",
   url,
-  image = "/public/og-image.png",
+  image = "/ad3.png", 
   type = "website",
   structuredData,
 }: SeoProps) {
   const location = useLocation();
   const canonicalUrl = url || `https://adrirosasdev.com${location.pathname}`;
+  
+  // ✅ Asegurar URL completa para la imagen
   const fullImageUrl = image.startsWith("http")
     ? image
-    : `https://adrirosasdev.com${image}`;
+    : `https://adrirosasdev.com${image.startsWith("/") ? image : `/${image}`}`;
 
-  // Datos estructurados principales 
   const baseStructuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Adriana Rosas",
     "alternateName": "Adri Rosas",
-    "jobTitle": "Front End Developer",
+    "jobTitle": "Front End Developer / Diseño UX/UI & AI Workflows",
     "url": "https://adrirosasdev.com",
     "sameAs": [
       "https://github.com/p1zz4crypt",
-      "https://linkedin.com/in/adrianarosasf",
-      "https://twitter.com/p1zz4crypt"
+      "https://linkedin.com/in/adriana-rosasf",
+      "https://medium.com/@a.rosasfig"
     ],
     "description": description,
     "image": fullImageUrl,
     "mainEntityOfPage": canonicalUrl,
-    "knowsAbout": ["JavaScript", "React", "TypeScript", "Vue.js", "Blockchain"]
+    "knowsAbout": ["React", "Vue.js", "TypeScript", "GSAP", "Tailwind CSS", "Blockchain", "AI Workflows"]
   };
 
-  // Combinar con structuredData personalizado si existe
   const finalStructuredData = structuredData 
     ? { ...baseStructuredData, ...structuredData } 
     : baseStructuredData;
@@ -53,8 +53,7 @@ export function Seo({
   return (
     <HelmetProvider>
       <Helmet>
-        {/* Metadatos básicos */}
-        <title>{`${title} | Adri Rosas Dev`}</title>
+        <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <link rel="canonical" href={canonicalUrl} />
@@ -65,20 +64,19 @@ export function Seo({
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={fullImageUrl} />
-        <meta property="og:site_name" content="Adri Rosas Dev" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Adriana Rosas | Portfolio" />
         <meta property="og:locale" content="es_MX" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@p1zz4crypt" />
-        <meta name="twitter:creator" content="@p1zz4crypt" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={fullImageUrl} />
 
-        {/* Schema.org - Solo un script */}
         <script type="application/ld+json">
-          {JSON.stringify(finalStructuredData, null, 2)} 
+          {JSON.stringify(finalStructuredData)}
         </script>
       </Helmet>
     </HelmetProvider>

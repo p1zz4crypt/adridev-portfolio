@@ -241,10 +241,10 @@ const AboutSection: React.FC = () => {
   return (
     <>
       <Seo
-        title=" Sobre Adri Rosas| Experiencia y Habilidades"
-        description="Front End Developer | Diseño UI | Tecnología Blockchain"
+        title=" Sobre Adriana Rosas| Experiencia y Habilidades"
+        description="Front End Developer / Diseño UX/UI & AI Workflows"
         type="profile"
-        image="/public/og-image.png"
+        image="/public/ad3.png"
       />
       <section
         id="about"
