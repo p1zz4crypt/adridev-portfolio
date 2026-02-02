@@ -3,8 +3,9 @@ import { Menu, X } from "lucide-react";
 import { Mail, Phone } from "lucide-react";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Ovni from "../assets/ovni.png"
-import SpaceshipHero from "./SpaceshipHero";
+import Ovni from "../assets/ovni.png";
+import ProjectsSection from "./ProjectsSection";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,7 +130,7 @@ export default function PortfolioLayout() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col bg-[#000000] dark:bg-gradient-section-6-dark text-black overflow-hidden"
+      className="mt-25 flex flex-col bg-[#000000] dark:bg-gradient-section-6-dark text-black overflow-hidden"
       style={{ minHeight: '300vh' }}
     >
       {/* Elementos Parallax */}
@@ -187,7 +188,7 @@ export default function PortfolioLayout() {
       />
 
       {/* Contenido principal - sticky para que se mantenga visible */}
-      <div className="sticky top-0 w-full min-h-screen flex flex-col justify-center md:pl-20 relative z-20">
+      <div className="sticky top-0 w-full min-h-screen flex flex-col justify-center md:pl-20 z-20">
         <div className="flex flex-col justify-center pt-16 md:pt-0">
           <h1
             className="pl-4 md:pl-0 font-medium capitalize tracking-tight leading-[0.9] md:text-[120px] text-[80px] mb-4 text-white"
@@ -201,6 +202,7 @@ export default function PortfolioLayout() {
             Tecnología Blockchain
           </p>
         </div>
+        <ProjectsSection />
       </div>
     </section>
   );

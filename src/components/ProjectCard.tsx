@@ -61,7 +61,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
     gsap.to(overlayRef.current, {
       // CAMBIO AQUÍ: isHovered ? 1 (oscuro) : 0.4 (claro)
-      opacity: isHovered ? 0.4 : 1,
+      opacity: isHovered ? 0.4 : 0,
       duration: 0.3,
       ease: "power2.out"
     });
@@ -90,7 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-black"
-        style={{ opacity: 0.4 }}
+        style={{ opacity: 0 }}
       />
     </div>
   );

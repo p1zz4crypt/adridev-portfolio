@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.blobWrapper {
+  cursor: pointer;
+}
+
+.svg {
+  width: 600px;
+  height: 600px;
+  aspect-ratio: 1/1;
+}
+
+.blob {
+  transform-origin: center;
+  transition: ease-out transform 0.4s;
+}
+
+.textContent {
+  font: 700 10px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  fill: black;
+  mix-blend-mode: normal;
+  transition: ease fill 0.5s;
+}
+
+.devCredit {
+  font-family: "Montserrat", sans-serif;
+  position: fixed;
+  font-size: 14px;
+  top: 10px;
+  left: 10px;
+  padding: 1em;
+  color: #333;
+  background-color: white;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.heart {
+  display: inline-block;
+  transition: ease all 0.4s;
+  color: pink;
+}
+
+.heart:hover {
+  transform: scale(1.2);
+}
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+  transition: ease all 0.4s;
+}
+
+.link:hover {
+  color: #ef5350;
+  text-decoration: underline;
+}
+
+.titleOverlay {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+}

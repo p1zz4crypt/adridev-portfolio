@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 
+import ProjectsSection from './sections/ProjectsNew';
+import AboutAbout from './sections/AboutAbout';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/projects" element={<ProjectsSection />} />
+            <Route path="/about" element={<AboutAbout />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

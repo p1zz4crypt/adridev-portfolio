@@ -255,7 +255,6 @@ Responde SOLO con este JSON (rellena TODO):
 
       const parsed = JSON.parse(content);
 
-      // Validación mínima (para no “creerle” a la IA ciegamente 😄)
       if (
         parsed?.viability_score === undefined ||
         !parsed?.required_procedures_mx?.mandatory_to_start ||

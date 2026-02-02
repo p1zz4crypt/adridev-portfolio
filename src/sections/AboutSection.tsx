@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { gsap } from "gsap";
@@ -11,144 +11,20 @@ import Me from "../assets/ad1.png";
 import Me2 from "../assets/ad2.png";
 import Me3 from "../assets/ad3.png";
 import { Seo } from "../Seo";
-import { ArrowLeft } from 'lucide-react';
-import { ArrowRight } from 'lucide-react';
-
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const leftRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const imageGalleryRef = useRef<HTMLDivElement | null>(null);
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Slides content as JSX (badges included)
-  const slidesContent: React.ReactNode[] = [
-    // Slide 1: skills with badges (your provided markup)
-    (
-      <div>
-        <p className="text-sm md:text-lg mb-4 text-muted-foreground dark:text-foreground">
-          Soy Adriana Rosas, vivo en CDMX. <br />
-          Desde hace 7 años me dedico al desarrollo front end creando interfaces intuitivas, participando en las etapas de:
-        </p>
-
-        <ul className="space-y-3 mb-6">
-          <li className="flex items-start">
-            <span className="mr-2">-</span>
-            <div className="flex-1">
-              Diseño de interfaz y prototipos prácticos en
-              <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Figma</span>
-                <span aria-label="Adobe XD" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Adobe XD</span>
-              </div>
-            </div>
-          </li>
-
-          <li className="flex items-start">
-            <span className="mr-2">-</span>
-            <div className="flex-1">
-              Creación y modificación de elementos visuales y generación de imagen con IA:
-              <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Photoshop" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Photoshop</span>
-                <span aria-label="Figma" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Figma</span>
-                <span aria-label="Leonardo AI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Leonardo AI</span>
-                <span aria-label="Stable Diffusion" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Stable Diffusion</span>
-                <span aria-label="ImageFX" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">ImageFX</span>
-                <span aria-label="Nano Banana" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Nano Banana</span>
-              </div>
-            </div>
-          </li>
-
-          <li className="flex items-start">
-            <span className="mr-2">-</span>
-            <div className="flex-1">
-              Maquetación responsiva con
-              <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="CSS" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">CSS</span>
-                <span aria-label="Tailwind" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Tailwind</span>
-                <span aria-label="Material-UI" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Material-UI</span>
-                <span aria-label="Bootstrap" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Bootstrap</span>
-              </div>
-            </div>
-          </li>
-
-          <li className="flex items-start">
-            <span className="mr-2">-</span>
-            <div className="flex-1">
-              Desarrollo de aplicaciones web con
-              <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Vue" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Vue</span>
-                <span aria-label="React" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">React</span>
-                <span aria-label="JavaScript" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">JavaScript</span>
-              </div>
-            </div>
-          </li>
-
-          <li className="flex items-start">
-            <span className="mr-2">-</span>
-            <div className="flex-1">
-              Conexión con APIs y bases de datos usando
-              <div className="mt-1 flex flex-wrap gap-2">
-                <span aria-label="Insomnia" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">Insomnia</span>
-                <span aria-label="GraphQL" className="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-blue-50 text-black border border-blue-100">GraphQL</span>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    ),
-
-    // Slide 2: long paragraph (your provided text)
-    (
-      <div className="text-sm md:text-lg">
-        <p className="mb-4 text-muted-foreground dark:text-foreground">
-          Antes de ser desarrolladora, fui cocinera durante 7 años. Esa experiencia y mentalidad práctica, colaborativa y orientada al resultado sigue guiando mi trabajo.
-          <br />
-          <br />
-          Esa combinación de aptitudes + un gran deseo de aprender, me brindaron la oportunidad de colaborar en la implementación de <span className="font-black text-black">Blockchain</span>  en el despacho de Auditoría "Ferrer y Asociados", de <span className="font-black text-black">Grupo Salinas</span>.
-        </p>
-
-        <p className="mb-4 text-muted-foreground dark:text-foreground">
-          Afortunadamente la vida es cíclica y yo aprovecho cada vuelta para aprender y construir. Actualmente estoy enfocada en aprender desarrollo de tiendas en Shopify y en crear y escalar POCs que unan datos, 
-          creativos generativos <span className="font-black text-black">(Runway, HeyGen, ElevenLabs, RoboNeo, Veo3)</span>, edición en <span className="font-black text-black">CapCut</span> y automatizaciones con diversas herramientas.
-        </p>
-      </div>
-    ),
-
-    // Slide 3: contact call
-    (
-      <div>
-        <p className="mb-4 text-lg md:text-3xl text-center text-muted-foreground dark:text-foreground">
-          Si tienes un proyecto interesante o simplemente quieres charlar sobre el maravilloso mundo de la tecnología, ¡no dudes en contactarme!
-        </p>
-        <div className="w-full flex justify-center mt-5">
-          <a 
-            href="#contact" 
-            className="inline-flex items-center justify-center px-6 py-3 rounded-md text-base font-medium text-white bg-violet-600 hover:bg-violet-700 shadow-lg hover:shadow-violet-300/50 transition-all duration-300 transform hover:-translate-y-1"
-          >
-            <View className="mr-2 h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-            Aquí
-          </a>
-        </div>
-      </div>
-    ),
-  ];
-
-  // images for slides (3 entries)
+  // Array de imágenes
   const images = [Me, Me2, Me3];
 
-  // slides array for navigation dots
-  const slides = slidesContent.map((_, idx) => ({
-    id: idx,
-    title: `${idx + 1}/${slidesContent.length}`,
-  }));
-
-  // refs
-  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const imageRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [active, setActive] = useState<number>(0);
-  const prevRef = useRef<number>(0);
-
-  // parallax
+  // Parallax effect
   useEffect(() => {
     if (!sectionRef.current || !leftRef.current) return;
     const ctx = gsap.context(() => {
@@ -166,72 +42,119 @@ const AboutSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  // initial layout: set visibility
-  useLayoutEffect(() => {
-    slideRefs.current.forEach((el, idx) => {
-      if (el) {
-        gsap.set(el, { autoAlpha: idx === active ? 1 : 0, display: idx === active ? "block" : "none" });
-      }
-    });
-    imageRefs.current.forEach((el, idx) => {
-      if (el) {
-        gsap.set(el, {
-          autoAlpha: idx === active ? 1 : 0.45,
-          scale: idx === active ? 1 : 0.96,
-          zIndex: idx === active ? 20 : 10,
-        });
-      }
-    });
-  }, [active]); // Añadimos active como dependencia
-
-  // animate on active change
+  // Efecto de imágenes - Masonry con animación float
   useEffect(() => {
-    const prev = prevRef.current;
-    if (prev === active) return;
+    if (!imageGalleryRef.current) return;
 
-    const outEl = slideRefs.current[prev];
-    const inEl = slideRefs.current[active];
+    const ctx = gsap.context(() => {
+      imageRefs.current.forEach((img, index) => {
+        if (!img) return;
 
-    const tl = gsap.timeline();
-    if (outEl) {
-      tl.to(outEl, { duration: 0.25, autoAlpha: 0, x: -18, ease: "power2.in" });
-      tl.set(outEl, { display: "none" });
-    }
-    if (inEl) {
-      tl.set(inEl, { display: "block", x: 18, autoAlpha: 0 });
-      tl.to(inEl, { duration: 0.45, autoAlpha: 1, x: 0, ease: "power2.out" }, "+=0.02");
-    }
+        // Trigger de scroll para activar animación
+        gsap.fromTo(
+          img,
+          {
+            opacity: 0,
+            y: 60,
+            rotationX: -20,
+            scale: 0.8,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            rotationX: 0,
+            scale: 1,
+            duration: 0.8,
+            delay: index * 0.15,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+              trigger: img,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
 
-    // images animation
-    const tlImg = gsap.timeline();
-    imageRefs.current.forEach((imgEl, idx) => {
-      if (!imgEl) return;
-      if (idx === active) {
-        tlImg.to(imgEl, { duration: 0.5, autoAlpha: 1, scale: 1, zIndex: 20, ease: "power2.out" }, 0);
-      } else {
-        tlImg.to(imgEl, { duration: 0.45, autoAlpha: 0.45, scale: 0.96, zIndex: 10, ease: "power2.out" }, 0);
-      }
-    });
+        // Efecto float continuo (movimiento suave vertical)
+        gsap.to(img, {
+          y: -20,
+          duration: 3 + index * 0.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: index * 0.2,
+        });
 
-    prevRef.current = active;
-    return () => {
-      tl.kill();
-      tlImg.kill();
-    };
-  }, [active]);
+        // Efecto hover con escala y rotación 3D
+        img.addEventListener("mouseenter", () => {
+          gsap.to(img, {
+            scale: 1.05,
+            rotationY: 5,
+            rotationX: -5,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        });
 
-  const goto = (i: number) => {
-    const safe = Math.max(0, Math.min(i, slidesContent.length - 1));
-    setActive(safe);
-  };
+        img.addEventListener("mouseleave", () => {
+          gsap.to(img, {
+            scale: 1,
+            rotationY: 0,
+            rotationX: 0,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: "auto",
+          });
+        });
+      });
 
-  // Navegación con efecto de bucle
-  const goPrev = () => goto((active - 1 + slidesContent.length) % slidesContent.length);
-  const goNext = () => goto((active + 1) % slidesContent.length);
+      // Animación de entrada para el contenedor de galería
+      gsap.fromTo(
+        imageGalleryRef.current,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: imageGalleryRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, sectionRef);
 
-  // Verificar si estamos en los límites para posible personalización visual
-  const isFirst = active === 0;
-  const isLast = active === slidesContent.length - 1;
+    return () => ctx.revert();
+  }, []);
+
+  // Scroll animation for content
+  useEffect(() => {
+    if (!contentRef.current) return;
+    const ctx = gsap.context(() => {
+      // Animate paragraphs on scroll
+      const paragraphs = contentRef.current?.querySelectorAll("p, li");
+      paragraphs?.forEach((para) => {
+        gsap.fromTo(
+          para,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: para,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleViewCV = () => {
     const pdfUrl = "/CV2025.pdf";
@@ -241,7 +164,7 @@ const AboutSection: React.FC = () => {
   return (
     <>
       <Seo
-        title=" Sobre Adri Rosas| Experiencia y Habilidades"
+        title="Sobre Adri Rosas | Experiencia y Habilidades"
         description="Front End Developer | Diseño UI | Tecnología Blockchain"
         type="profile"
         image="/public/og-image.png"
@@ -249,109 +172,338 @@ const AboutSection: React.FC = () => {
       <section
         id="about"
         ref={(el) => (sectionRef.current = el)}
-        className="w-full bg-[#F3EFEA] dark:bg-gradient-section-2-dark"
+        className="w-full bg-gradient-to-b from-[#F3EFEA] to-white dark:from-slate-950 dark:to-black relative overflow-hidden"
       >
-        <div className="section-container py-24 relative">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* LEFT: images */}
-            <div className="relative " ref={(el) => (leftRef.current = el)}>
-              <div className="flex flex-col h-[200px] md:h-[500px] ">
-                <div>
-                  {images.map((src, idx) => (
+        {/* Fondo sutil con nebulosa */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle at 80% 20%, rgba(255, 0, 110, 0.08) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(131, 56, 236, 0.06) 0%, transparent 40%)",
+          }}
+        />
+
+        <div className="section-container py-24 relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* LEFT: Imágenes en galería editorial */}
+            <div className="relative" ref={(el) => (leftRef.current = el)}>
+              <RevealOnScroll delay={0.2}>
+                <div ref={imageGalleryRef} className="sticky top-24 space-y-6">
+                  {/* Grid de imágenes masonry elegante */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Imagen principal (toma 2 filas) */}
                     <div
-                      key={idx}
-                      ref={(el) => (imageRefs.current[idx] = el)}
-                      className="absolute inset-0 m-auto  h-full w-full  rounded-xl overflow-hidden  parallax cursor-pointer"
+                      ref={(el) => (imageRefs.current[0] = el)}
+                      className="col-span-2 md:col-span-1 md:row-span-2 relative rounded-2xl overflow-hidden parallax h-[300px] md:h-[420px] shadow-2xl cursor-pointer"
                       style={{
-                        pointerEvents: idx === active ? "auto" : "none",
-                        zIndex: idx === active ? 20 : 10,
-                        opacity: idx === active ? 1 : 0.45,
-                        transform: `scale(${idx === active ? 1 : 0.96})`,
-                        transition: "opacity 260ms ease, transform 260ms ease",
+                        border: "1px solid rgba(255, 0, 110, 0.2)",
+                        boxShadow:
+                          "0 0 40px rgba(255, 0, 110, 0.15), 0 0 80px rgba(131, 56, 236, 0.1)",
+                        perspective: "1000px",
                       }}
-                      onClick={() => goto(idx)}
                     >
-                      <LazyLoadImage src={src} alt={`Adriana ${idx + 1}`} effect="blur" className="w-full h-full object-cover aspect-square" />
+                      <LazyLoadImage
+                        src={Me}
+                        alt="Adriana Rosas - Principal"
+                        effect="blur"
+                        className="w-full h-full object-cover"
+                      />
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%)",
+                        }}
+                      />
                     </div>
-                  ))}
 
-                </div>
+                    {/* Imagen secundaria superior */}
+                    <div
+                      ref={(el) => (imageRefs.current[1] = el)}
+                      className="relative rounded-xl overflow-hidden h-[180px] shadow-lg cursor-pointer"
+                      style={{
+                        border: "1px solid rgba(131, 56, 236, 0.2)",
+                        boxShadow:
+                          "0 0 30px rgba(131, 56, 236, 0.15), 0 0 60px rgba(58, 134, 255, 0.08)",
+                        perspective: "1000px",
+                      }}
+                    >
+                      <LazyLoadImage
+                        src={Me2}
+                        alt="Adriana Rosas - Secundaria"
+                        effect="blur"
+                        className="w-full h-full object-cover"
+                      />
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(131, 56, 236, 0.1) 0%, rgba(58, 134, 255, 0.1) 100%)",
+                        }}
+                      />
+                    </div>
 
-              </div>
-              <div className="flex justify-center w-full  gap-3 absolute  z-50 mt-6">
-                <RevealOnScroll delay={0.3}>
-                  <div className=" mr-">
-                    <Button size="lg" className="group bg-black" onClick={handleViewCV}>
+                    {/* Imagen secundaria inferior */}
+                    <div
+                      ref={(el) => (imageRefs.current[2] = el)}
+                      className="relative rounded-xl overflow-hidden h-[180px] shadow-lg cursor-pointer"
+                      style={{
+                        border: "1px solid rgba(58, 134, 255, 0.2)",
+                        boxShadow:
+                          "0 0 30px rgba(58, 134, 255, 0.15), 0 0 60px rgba(131, 56, 236, 0.08)",
+                        perspective: "1000px",
+                      }}
+                    >
+                      <LazyLoadImage
+                        src={Me3}
+                        alt="Adriana Rosas - Tercera"
+                        effect="blur"
+                        className="w-full h-full object-cover"
+                      />
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(58, 134, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%)",
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Botón Ver CV - debajo de la galería */}
+                  <div className="flex justify-center md:justify-start">
+                    <Button
+                      size="lg"
+                      className="group bg-gradient-to-r from-[#ff006e] to-[#8338ec] hover:from-[#ff0077] hover:to-[#9544ff] text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                      onClick={handleViewCV}
+                    >
                       <View className="mr-2 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
                       Ver CV
                     </Button>
                   </div>
-                </RevealOnScroll>
 
-                <div className="flex justify-center">
-                  <button
-                    onClick={goPrev}
-                    className={`px-5 mr-3 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300
-                      ${isFirst
-                        ? ' border-black'
-                        : 'bg-[#F3EFEA] dark:bg-gradient-section-3-dark hover:border-black'}`}
+                  {/* Info badge con efecto de animación */}
+                  <div
+                    className="text-xs md:text-sm text-center text-gray-500 dark:text-gray-400 italic"
+                    style={{
+                      opacity: 0.7,
+                    }}
                   >
-                    <ArrowLeft className={`w-6 h-6 ${isFirst ? 'text-black' : 'text-primary hover:text-black'}`} />
-                  </button>
-                  <button
-                    onClick={goNext}
-                    className={`px-5 py-1 border rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-black
-                      ${isLast
-                        ? ' border-black'
-                        : 'bg-[#F3EFEA] dark:bg-gradient-section-3-dark hover:border-gray-400'}`}
-                  >
-                    <ArrowRight className={`w-6 h-6 ${isLast ? 'text-black' : 'text-primary hover:text-black'}`} />
-                  </button>
+                    ✨ Hover sobre las imágenes para efecto 3D
+                  </div>
                 </div>
-
-              </div>
+              </RevealOnScroll>
             </div>
 
-            {/* RIGHT: slides */}
-            <div className="md:mt-28 mt-16">
-              <SectionTitle
-                subtitle="Acerca de mi"
-                title={
-                  <div className="flex items-center gap-2">
-                    {slides.map((s) => (
-                      <button
-                        key={s.id}
-                        onClick={() => goto(s.id)}
-                        aria-label={`Ir a ${s.title}`}
-                        aria-current={s.id === active} 
-                        className={`w-3 h-1 px-4  rounded-full transition-all ${s.id === active ? "bg-black" : "bg-gray-300 dark:bg-black"}`}
-                      />
-                    ))}
-                  </div>
-                }
-                center={false}
-              />
-              
+            {/* RIGHT: Contenido Editorial */}
+            <div className="md:mt-0" ref={contentRef}>
+              <RevealOnScroll delay={0.3}>
+                <SectionTitle
+                  subtitle="ACERCA DE MÍ"
+                  title="Desarrolladora | Creativa | Builders"
+                  center={false}
+                />
+              </RevealOnScroll>
 
-              <RevealOnScroll>
-                <div className="relative">
-                  <div className="md:min-h-[500px] min-h-[450px] text-sm md:text-lg relative overflow-y-auto overflow-x-hidden">
-                    {slidesContent.map((node, idx) => (
-                      <div
-                        key={idx}
-                        ref={(el) => (slideRefs.current[idx] = el)}
-                        className="absolute inset-0 w-full"
-                        style={{ display: idx === active ? "block" : "none" }}
-                        aria-hidden={idx !== active}
-                      >
-                        {node}
+              <RevealOnScroll delay={0.4}>
+                <div className="space-y-6 md:space-y-8 text-gray-700 dark:text-gray-300">
+                  {/* Introducción */}
+                  <p className="text-base md:text-lg leading-relaxed">
+                    Soy{" "}
+                    <span className="font-semibold text-black dark:text-white">
+                      Adriana Rosas
+                    </span>
+                    , vivo en CDMX. Desde hace{" "}
+                    <span className="font-semibold">7 años</span> me dedico al
+                    desarrollo front end creando interfaces intuitivas,
+                    participando en todas las etapas del proceso creativo.
+                  </p>
+
+                  {/* Áreas de experiencia */}
+                  <div className="space-y-5">
+                    <h3 className="text-lg md:text-xl font-bold text-black dark:text-white">
+                      Áreas de experiencia:
+                    </h3>
+
+                    {/* Item 1: Diseño */}
+                    <div className="pl-4 border-l-2 border-[#ff006e]/40">
+                      <h4 className="font-semibold text-black dark:text-white mb-2">
+                        Diseño de Interfaz y Prototipos
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["Figma", "Adobe XD"].map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
+                            style={{
+                              backgroundColor: "rgba(255, 0, 110, 0.1)",
+                              borderColor: "rgba(255, 0, 110, 0.3)",
+                              color: "#ff006e",
+                              border: "1px solid",
+                            }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Item 2: Visuales e IA */}
+                    <div className="pl-4 border-l-2 border-[#8338ec]/40">
+                      <h4 className="font-semibold text-black dark:text-white mb-2">
+                        Creación de Visuales e IA Generativa
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          "Photoshop",
+                          "Figma",
+                          "Leonardo AI",
+                          "Stable Diffusion",
+                          "ImageFX",
+                          "Nano Banana",
+                        ].map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
+                            style={{
+                              backgroundColor: "rgba(131, 56, 236, 0.1)",
+                              borderColor: "rgba(131, 56, 236, 0.3)",
+                              color: "#8338ec",
+                              border: "1px solid",
+                            }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Item 3: Maquetación */}
+                    <div className="pl-4 border-l-2 border-[#3a86ff]/40">
+                      <h4 className="font-semibold text-black dark:text-white mb-2">
+                        Maquetación Responsiva
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["CSS", "Tailwind", "Material-UI", "Bootstrap"].map(
+                          (tech) => (
+                            <span
+                              key={tech}
+                              className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
+                              style={{
+                                backgroundColor: "rgba(58, 134, 255, 0.1)",
+                                borderColor: "rgba(58, 134, 255, 0.3)",
+                                color: "#3a86ff",
+                                border: "1px solid",
+                              }}
+                            >
+                              {tech}
+                            </span>
+                          )
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Item 4: Desarrollo Web */}
+                    <div className="pl-4 border-l-2 border-[#ff006e]/40">
+                      <h4 className="font-semibold text-black dark:text-white mb-2">
+                        Desarrollo de Aplicaciones Web
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          "Vue",
+                          "React",
+                          "JavaScript",
+                          "TypeScript",
+                          "GSAP",
+                        ].map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
+                            style={{
+                              backgroundColor: "rgba(255, 0, 110, 0.1)",
+                              borderColor: "rgba(255, 0, 110, 0.3)",
+                              color: "#ff006e",
+                              border: "1px solid",
+                            }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Item 5: APIs y Bases de Datos */}
+                    <div className="pl-4 border-l-2 border-[#8338ec]/40">
+                      <h4 className="font-semibold text-black dark:text-white mb-2">
+                        Conexión con APIs y Bases de Datos
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["Insomnia", "GraphQL", "Axios", "REST"].map(
+                          (tech) => (
+                            <span
+                              key={tech}
+                              className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
+                              style={{
+                                backgroundColor: "rgba(131, 56, 236, 0.1)",
+                                borderColor: "rgba(131, 56, 236, 0.3)",
+                                color: "#8338ec",
+                                border: "1px solid",
+                              }}
+                            >
+                              {tech}
+                            </span>
+                          )
+                        )}
+                      </div>
+                    </div>
                   </div>
 
+                  {/* Historia de fondo */}
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <p className="italic text-base leading-relaxed">
+                      Antes de ser desarrolladora, fui{" "}
+                      <span className="font-semibold">cocinera durante 7 años</span>.
+                      Esa experiencia y mentalidad práctica, colaborativa y orientada al
+                      resultado sigue guiando mi trabajo.
+                    </p>
+                  </div>
 
+                  {/* Experiencias destacadas */}
+                  <div className="bg-gradient-to-r from-[#ff006e]/5 to-[#8338ec]/5 dark:from-[#ff006e]/10 dark:to-[#8338ec]/10 p-6 rounded-xl border border-[#ff006e]/20">
+                    <p className="text-base leading-relaxed">
+                      Esa combinación de aptitudes + un gran deseo de aprender, me
+                      brindaron la oportunidad de colaborar en la implementación de{" "}
+                      <span className="font-bold">Blockchain</span> en el despacho de
+                      Auditoría <span className="font-bold">"Ferrer y Asociados"</span>,
+                      de <span className="font-bold">Grupo Salinas</span>.
+                    </p>
+                  </div>
 
+                  {/* Actualidad */}
+                  <p className="text-base leading-relaxed">
+                    Afortunadamente la vida es cíclica y yo aprovecho cada vuelta para
+                    aprender y construir. Actualmente estoy enfocada en aprender
+                    desarrollo de tiendas en <span className="font-semibold">Shopify</span> y en
+                    crear y escalar POCs que unan datos, creativos generativos{" "}
+                    <span className="font-semibold">
+                      (Runway, HeyGen, ElevenLabs, RoboNeo, Veo3)
+                    </span>
+                    , edición en <span className="font-semibold">CapCut</span> y
+                    automatizaciones con diversas herramientas.
+                  </p>
 
+                  {/* Call to Action */}
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <p className="text-base md:text-lg leading-relaxed font-medium text-black dark:text-white">
+                      Si tienes un proyecto interesante o simplemente quieres charlar sobre
+                      el maravilloso mundo de la tecnología,{" "}
+                      <a
+                        href="#contact"
+                        className="underline hover:text-[#ff006e] transition-colors"
+                      >
+                        ¡no dudes en contactarme!
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </RevealOnScroll>
             </div>

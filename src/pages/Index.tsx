@@ -14,15 +14,25 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Seo } from '@/Seo';
 import NewVersion from '../sections/NewVersion';
 import ScoreGen from "../sections/Score-Gen"
+import SpaceshipHero from "../sections/SpaceshipHero3D";
+import SpaceNavBar from '@/components/SpaceNavBar';
+import SpiralImg from '../assets/img/menu.png'
+import ScrollTransition from '@/sections/ScrollTransition';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const Index: React.FC = () => {
+
+useEffect(() => {
+  document.documentElement.style.cursor = "url('../assets/puntero.png'), auto";
+}, []);
+
+  
   useEffect(() => {
     // Initialize scroll animations
     const sections = document.querySelectorAll('.reveal');
-    
+
     sections.forEach((section) => {
       ScrollTrigger.create({
         trigger: section,
@@ -33,15 +43,15 @@ const Index: React.FC = () => {
         onLeaveBack: () => section.classList.remove('active'),
       });
     });
-    
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const targetId = this.getAttribute('href');
         if (!targetId) return;
-        
+
         gsap.to(window, {
           duration: 1,
           scrollTo: {
@@ -52,7 +62,7 @@ const Index: React.FC = () => {
         });
       });
     });
-    
+
     return () => {
       // Clean up ScrollTrigger instances
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -61,36 +71,40 @@ const Index: React.FC = () => {
 
   return (
     <>
-    <Seo 
-            title=" Sobre Adri Rosas| Experiencia y Habilidades"
-            description="Front End Developer | Diseño UI | Tecnología Blockchain"
-            type="profile"
-            image="/images/og-me.png"
-          />
-    <div className="min-h-screen flex flex-col">
-   
-            
-            {/*<NavBar />  */}
-      
-      <main className="flex-grow">
-        <NewVersion />
+      <Seo
+        title=" Sobre Adri Rosas| Experiencia y Habilidades"
+        description="Front End Developer | Diseño UI | Tecnología Blockchain"
+        type="profile"
+        image="/images/og-me.png"
+      />
+
+      <div className="min-h-screen flex flex-col bg-transparent">
 
 
-        <ProjectsSection />
+        {/*      <SpaceNavBar />  */}
+        <SpaceNavBar />
 
-        {/*<NewVersion /> */}
-        {/*<HeroSection /> */}
-        {/*<AboutSection /> */}
-         {/*<ScoreGen /> */}
-        
-        {/*<SkillsSection /> */}
-        {/*<ProjectsSection /> */}
-        {/*<ExperienceSection /> */}
-        {/*<ContactSection /> */}
-      </main>
-      
-       {/*<Footer /> */}
-    </div>
+        <main className="flex-grow" >
+          {/*   <SpaceshipHero modelUrl="/spaceship.glb" /> */}
+
+
+          <div id="projects-transition">
+            <ScrollTransition />
+          </div>
+
+          {/*<NewVersion /> */}
+          {/*<HeroSection /> */}
+          {/*<AboutSection /> */}
+          {/*<ScoreGen /> */}
+
+          {/*<SkillsSection /> */}
+          {/*<ProjectsSection /> */}
+          {/*<ExperienceSection /> */}
+          {/*<ContactSection /> */}
+        </main>
+
+        {/*<Footer /> */}
+      </div>
     </>
   );
 };

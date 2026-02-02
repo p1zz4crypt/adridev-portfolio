@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, Suspense } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useGLTF, Environment, Float, Stars } from "@react-three/drei";
+import { Canvas, useFrame, useThree, ThreeEvent } from "@react-three/fiber";
+import { useGLTF, Environment, Stars } from "@react-three/drei";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
+import NavBar from "@/components/SpaceNavBar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,38 +19,105 @@ interface SpaceshipModelProps {
 function SpaceshipModel({ url, scrollProgress }: SpaceshipModelProps) {
   const { scene } = useGLTF(url);
   const meshRef = useRef<THREE.Group>(null);
-  const { mouse } = useThree();
+  const { pointer, viewport } = useThree();
+  
+  // Estado para el comportamiento evasivo
+  const orbitAngle = useRef(0);
+  const currentPos = useRef({ x: 2, y: 0 });
+  const targetPos = useRef({ x: 2, y: 0 });
+  const spinRotation = useRef(0);
+  const evadeSpeed = useRef(1);
+  
+  // Distancia orbital alrededor del cursor
+  const ORBIT_RADIUS = 2.5;
+  const ORBIT_SPEED = 0.8;
+  const EVADE_MULTIPLIER = 3;
 
-  // Animación frame por frame
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        if (child.material) {
+          child.material.needsUpdate = true;
+        }
+      }
+    });
+  }, [scene]);
+
   useFrame((state, delta) => {
     if (!meshRef.current) return;
 
-    // Rotación interactiva con el mouse
-    const targetRotationX = mouse.y * 0.3;
-    const targetRotationY = mouse.x * 0.5;
+    // Posición del mouse en coordenadas del mundo
+    const mouseX = pointer.x * viewport.width / 2;
+    const mouseY = pointer.y * viewport.height / 2;
 
-    meshRef.current.rotation.x = THREE.MathUtils.lerp(
-      meshRef.current.rotation.x,
-      targetRotationX,
-      0.05
+    // Posición actual de la nave
+    const shipX = currentPos.current.x;
+    const shipY = currentPos.current.y;
+
+    // Distancia entre el mouse y la nave
+    const dx = mouseX - shipX;
+    const dy = mouseY - shipY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // Si el mouse se acerca mucho, la nave huye más rápido
+    const proximityThreshold = 1.5;
+    if (distance < proximityThreshold) {
+      // ¡Huir! Aumentar velocidad de evasión
+      evadeSpeed.current = THREE.MathUtils.lerp(evadeSpeed.current, EVADE_MULTIPLIER, 0.1);
+      
+      // Calcular ángulo de escape (opuesto al mouse)
+      const escapeAngle = Math.atan2(-dy, -dx);
+      orbitAngle.current = escapeAngle;
+    } else {
+      // Volver a velocidad normal de órbita
+      evadeSpeed.current = THREE.MathUtils.lerp(evadeSpeed.current, 1, 0.02);
+    }
+
+    // Actualizar ángulo de órbita continuamente
+    orbitAngle.current += delta * ORBIT_SPEED * evadeSpeed.current;
+
+    // Calcular posición objetivo en órbita alrededor del mouse
+    targetPos.current.x = mouseX + Math.cos(orbitAngle.current) * ORBIT_RADIUS;
+    targetPos.current.y = mouseY + Math.sin(orbitAngle.current) * ORBIT_RADIUS;
+
+    // Interpolación suave hacia la posición objetivo
+    const lerpSpeed = 0.06;
+    currentPos.current.x = THREE.MathUtils.lerp(currentPos.current.x, targetPos.current.x, lerpSpeed);
+    currentPos.current.y = THREE.MathUtils.lerp(currentPos.current.y, targetPos.current.y, lerpSpeed);
+
+    // Aplicar posición con levitación sutil
+    meshRef.current.position.x = currentPos.current.x;
+    meshRef.current.position.y = currentPos.current.y + Math.sin(state.clock.elapsedTime * 1.5) * 0.08;
+    meshRef.current.position.z = Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
+
+    // Rotación continua sobre sí misma (spin) - más rápido cuando evade
+    spinRotation.current += delta * (1 + evadeSpeed.current * 0.5);
+    
+    // Inclinación basada en dirección de movimiento
+    const moveAngle = Math.atan2(
+      targetPos.current.y - currentPos.current.y,
+      targetPos.current.x - currentPos.current.x
     );
-    meshRef.current.rotation.y = THREE.MathUtils.lerp(
-      meshRef.current.rotation.y,
-      targetRotationY + Math.PI,
-      0.05
-    );
 
-    // Levitación continua
-    meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.15;
+    // Rotaciones: spin continuo + inclinación dinámica
+    meshRef.current.rotation.x = 0.2 + Math.sin(moveAngle) * 0.3;
+    meshRef.current.rotation.y = spinRotation.current;
+    meshRef.current.rotation.z = Math.cos(moveAngle) * 0.2;
 
-    // Efecto de scroll: la nave baja y rota
+    // Efecto de scroll
     const scroll = scrollProgress.current;
-    meshRef.current.position.z = scroll * 3;
-    meshRef.current.rotation.z = scroll * 0.5;
+    meshRef.current.position.z += -scroll * 3;
+    meshRef.current.scale.setScalar(1 - scroll * 0.3);
   });
 
   return (
-    <group ref={meshRef} scale={1.5} position={[0, 0, 0]}>
+    <group 
+      ref={meshRef} 
+      scale={1}
+      position={[2, 0, 0]}
+    >
       <primitive object={scene} />
     </group>
   );
@@ -59,41 +127,64 @@ function SpaceshipModel({ url, scrollProgress }: SpaceshipModelProps) {
 // LUCES Y AMBIENTE
 // ════════════════════════════════════════════════════════════════════════════
 function Lighting() {
+  const light1Ref = useRef<THREE.PointLight>(null);
+  const light2Ref = useRef<THREE.PointLight>(null);
+
+  useFrame((state) => {
+    // Luces que orbitan sutilmente
+    if (light1Ref.current) {
+      light1Ref.current.position.x = Math.sin(state.clock.elapsedTime * 0.3) * 5;
+      light1Ref.current.position.z = Math.cos(state.clock.elapsedTime * 0.3) * 5;
+    }
+    if (light2Ref.current) {
+      light2Ref.current.position.x = Math.cos(state.clock.elapsedTime * 0.2) * 4;
+    }
+  });
+
   return (
     <>
-      {/* Luz principal */}
-      <ambientLight intensity={0.3} />
+      {/* Luz ambiental base */}
+      <ambientLight intensity={0.5} />
       
-      {/* Luz rosa desde arriba-izquierda */}
+      {/* Luz principal rosa (key light) */}
       <pointLight
-        position={[-5, 5, 5]}
-        intensity={50}
+        ref={light1Ref}
+        position={[-3, 4, 5]}
+        intensity={80}
         color="#ec4899"
+        distance={25}
+      />
+      
+      {/* Luz violeta de relleno */}
+      <pointLight
+        ref={light2Ref}
+        position={[4, 2, 3]}
+        intensity={60}
+        color="#8b5cf6"
         distance={20}
       />
       
-      {/* Luz violeta desde abajo-derecha */}
+      {/* Luz azul desde atrás (rim light) */}
       <pointLight
-        position={[5, -3, 3]}
-        intensity={30}
-        color="#8b5cf6"
-        distance={15}
-      />
-      
-      {/* Luz azul de relleno */}
-      <pointLight
-        position={[0, 0, -5]}
-        intensity={20}
+        position={[0, 3, -5]}
+        intensity={40}
         color="#3b82f6"
-        distance={15}
+        distance={20}
       />
 
-      {/* Luz direccional para sombras */}
+      {/* Luz blanca desde arriba para highlights */}
       <directionalLight
         position={[0, 10, 5]}
-        intensity={1}
+        intensity={2}
         color="#ffffff"
-        castShadow
+      />
+
+      {/* Luz inferior para evitar sombras muy oscuras */}
+      <pointLight
+        position={[0, -5, 0]}
+        intensity={20}
+        color="#4f46e5"
+        distance={15}
       />
     </>
   );
@@ -101,10 +192,9 @@ function Lighting() {
 
 // ════════════════════════════════════════════════════════════════════════════
 // GRID RETRO
-// ════════════════════════════════════════════════════════════════════════════
 function RetroGrid() {
   const gridRef = useRef<THREE.GridHelper>(null);
-
+  
   useFrame((state) => {
     if (gridRef.current) {
       // Efecto de movimiento infinito del grid
@@ -116,20 +206,21 @@ function RetroGrid() {
     <group position={[0, -3, 0]} rotation={[0, 0, 0]}>
       <gridHelper
         ref={gridRef}
-        args={[50, 50, "#8b5cf6", "#3b82f6"]}
+        args={[0, 0, "transparent", "transparent"]}
         position={[0, 0, 0]}
-      />
+        />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}>
         <planeGeometry args={[50, 50]} />
         <meshBasicMaterial
           color="#0a0a0f"
           transparent
-          opacity={0.8}
-        />
+          opacity={0}
+          />
       </mesh>
     </group>
   );
 }
+// ════════════════════════════════════════════════════════════════════════════
 
 // ════════════════════════════════════════════════════════════════════════════
 // PARTÍCULAS FLOTANTES
@@ -226,18 +317,7 @@ export default function SpaceshipHero3D({
         }
       });
 
-      // Texto desaparece con scroll
-      gsap.to([titleRef.current, subtitleRef.current], {
-        y: -100,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "40% top",
-          scrub: 1
-        }
-      });
+   
 
     }, containerRef);
 
@@ -256,22 +336,30 @@ export default function SpaceshipHero3D({
         background: "linear-gradient(180deg, #0a0a0f 0%, #1a0a2e 50%, #0f0f1a 100%)"
       }}
     >
+      <NavBar />
       {/* Canvas de Three.js */}
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 50 }}
+        camera={{ position: [0, 0, 8], fov: 50 }}
         style={{ position: "absolute", inset: 0 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping }}
+        dpr={[1, 2]}
       >
         <Suspense fallback={null}>
+          {/* Color de fondo */}
+          <color attach="background" args={["#0a0a0f"]} />
+          
+          {/* Niebla para profundidad */}
+          <fog attach="fog" args={["#1a0a2e", 8, 25]} />
+
           {/* Estrellas de fondo */}
           <Stars
             radius={50}
             depth={50}
-            count={2000}
+            count={3000}
             factor={4}
             saturation={0}
             fade
-            speed={1}
+            speed={0.5}
           />
 
           {/* Iluminación */}
@@ -283,17 +371,11 @@ export default function SpaceshipHero3D({
           {/* Partículas */}
           <FloatingParticles />
 
-          {/* Nave con Float para levitación extra */}
-          <Float
-            speed={2}
-            rotationIntensity={0.2}
-            floatIntensity={0.3}
-          >
-            <SpaceshipModel url={modelUrl} scrollProgress={scrollProgress} />
-          </Float>
+          {/* Nave 3D */}
+          <SpaceshipModel url={modelUrl} scrollProgress={scrollProgress} />
 
-          {/* Environment para reflejos realistas */}
-          <Environment preset="night" />
+          {/* Environment para reflejos en materiales metálicos */}
+          <Environment preset="night" environmentIntensity={0.5} />
         </Suspense>
       </Canvas>
 
@@ -362,8 +444,9 @@ export default function SpaceshipHero3D({
         </p>
       </div>
 
-      {/* Indicador de scroll */}
-      <div
+      {/* Indicador de scroll mejorado */}
+      <a
+        href="#projects-transition"
         style={{
           position: "absolute",
           bottom: "2rem",
@@ -373,31 +456,68 @@ export default function SpaceshipHero3D({
           flexDirection: "column",
           alignItems: "center",
           gap: "0.5rem",
-          opacity: 0.6,
-          animation: "bounce 2s ease-in-out infinite",
-          zIndex: 20
+          zIndex: 20,
+          textDecoration: "none",
+          cursor: "pointer"
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          const target = document.getElementById("projects-transition");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
         }}
       >
         <span style={{
           fontSize: "0.75rem",
           letterSpacing: "0.3em",
           color: "rgba(255,255,255,0.5)",
-          fontFamily: "'Space Mono', monospace"
+          fontFamily: "'Space Mono', monospace",
+          transition: "color 0.3s ease"
         }}>
           SCROLL
         </span>
+        
+        {/* Mouse icon */}
+        <div style={{
+          position: "relative",
+          width: "24px",
+          height: "40px",
+          border: "2px solid rgba(236, 72, 153, 0.4)",
+          borderRadius: "12px",
+          display: "flex",
+          justifyContent: "center",
+          paddingTop: "8px"
+        }}>
+          <div style={{
+            width: "4px",
+            height: "8px",
+            borderRadius: "2px",
+            background: "#ec4899",
+            boxShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+            animation: "scrollBounce 1.5s ease-in-out infinite"
+          }} />
+        </div>
+        
+        {/* Línea */}
         <div style={{
           width: "1px",
-          height: "40px",
-          background: "linear-gradient(to bottom, rgba(236, 72, 153, 0.8), transparent)"
+          height: "30px",
+          background: "linear-gradient(to bottom, rgba(236, 72, 153, 0.6), transparent)"
         }} />
-      </div>
+      </a>
 
       <style>{`
         @keyframes bounce {
           0%, 100% { transform: translateX(-50%) translateY(0); }
           50% { transform: translateX(-50%) translateY(10px); }
         }
+        
+        @keyframes scrollBounce {
+          0%, 100% { transform: translateY(0); opacity: 1; }
+          50% { transform: translateY(12px); opacity: 0.5; }
+        }
+        
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@900&family=Space+Mono&display=swap');
       `}</style>
     </div>
