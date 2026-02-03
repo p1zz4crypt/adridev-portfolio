@@ -124,6 +124,11 @@ const ProjectsNew: React.FC = () => {
           description:
             "Integración con APIs de IA para funcionamiento de chatbots y asistentes virtuales en plataformas empresariales.",
         },
+         {
+          url: TodoUsado1,
+          description:
+            "Páginas de colección con filtros avanzados, ordenamiento dinámico y experiencia de búsqueda intuitiva.",
+        },
       ],
     },
     {
@@ -182,25 +187,21 @@ const ProjectsNew: React.FC = () => {
             "Rediseño y construcción de tienda en Shopify: UI/UX de páginas de producto y colección, implementación de theme con Liquid (OS 2.0) y maquetado responsive.",
         },
         {
-          url: TodoUsado1,
+          url: TodoUsado2,
           description:
             "Desarrollo de plataforma e-commerce: diseño moderno, arquitectura de información clara y navegación optimizada para conversión.",
         },
         {
-          url: TiendaLegal2,
+          url: TodoUsado1,
           description:
             "Páginas de colección con filtros avanzados, ordenamiento dinámico y experiencia de búsqueda intuitiva.",
         },
         {
-          url: TiendaLegal3,
+          url: TodoUsado3,
           description:
             "Páginas de producto con galerías interactivas, información estructurada y llamados a la acción optimizados.",
         },
-        {
-          url: TiendaLegal4,
-          description:
-            "Carrito de compras optimizado y prototipos funcionales para validación de hipótesis mediante tests A/B.",
-        },
+     
       ],
     },
     {
