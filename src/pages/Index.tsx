@@ -69,7 +69,7 @@ const Index: React.FC = () => {
   return (
     <>
       <Seo
-        title=" Sobre Adriana Rosas| Experiencia y Habilidades"
+        title=" Sobre Adriana Rosas | Experiencia y Habilidades"
         description="Front End Developer / Diseño UX/UI & AI Workflows"
         type="profile"
         image="/public/ad3.png"

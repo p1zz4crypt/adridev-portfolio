@@ -14,6 +14,9 @@ import Img9 from "../assets/img/about/9.jpeg";
 import Img10 from "../assets/img/about/10.jpeg";
 import Img11 from "../assets/img/about/11.jpeg";
 import Img12 from "../assets/img/about/12.jpeg";
+import Img13 from "../assets/img/about/13.png";
+import Img14 from "../assets/img/about/14.webp";
+import Img15 from "../assets/img/about/15.png";
 import RocketIcon from "../assets/img/rocket.png";
 import OrbitIcon from "../assets/img/orbit.png";
 import Fondito from "../assets/img/about/03 - Alfheim Forest.png";
@@ -26,15 +29,15 @@ const AboutAbout = () => {
   const columnsData = [
     {
       direction: "up",
-      images: [Img1, Img2, Img3, Img4],
+      images: [Img1, Img2, Img3, Img4, Img13],
     },
     {
       direction: "down",
-      images: [Img5, Img6, Img7, Img8],
+      images: [Img5, Img6, Img7, Img8, Img14],
     },
     {
       direction: "up",
-      images: [Img9, Img10, Img11, Img12],
+      images: [Img9, Img10, Img11, Img12, Img15],
     },
   ];
 
@@ -73,6 +76,7 @@ const AboutAbout = () => {
           height: 100vh;
           width: 100%;
           display: flex;
+          flex-directon: column;
           align-items: center;
           overflow: hidden;
           background: black;
@@ -169,11 +173,18 @@ const AboutAbout = () => {
         }
 
         /* Orbit container */
+
+.orbit-mobile{  
+display:none;
+
+      }
+
         .orbit-container {
           top: 8%;
           left: 3%;
           pointer-events: auto;
           cursor: pointer !important;
+      
         }
 
         .orbit-glow {
@@ -284,7 +295,7 @@ const AboutAbout = () => {
         .text-contain {
           position: relative;
           z-index: 5;
-          max-width: 900px;
+          max-width: 700px;
           height: 60vh;
           overflow-y: auto;
           padding: 2rem;
@@ -308,7 +319,7 @@ const AboutAbout = () => {
         }
 
         .text-contain h1 {
-          font-size: clamp(1.8rem, 4vw, 2.5rem);
+          font-size: clamp(1.4rem, 1.8vw + 0.8rem, 2.5rem);
           margin-bottom: 1.5rem;
           font-weight: 700;
           line-height: 1.2;
@@ -316,7 +327,7 @@ const AboutAbout = () => {
         }
 
         .text-contain p {
-          font-size: clamp(0.95rem, 2vw, 1.6rem);
+          font-size: clamp(0.85rem, 0.4vw + 0.7rem, 1.15rem);
           line-height: 1.8;
           margin-bottom: 1.25rem;
           color: rgba(255, 255, 255, 0.65);
@@ -355,7 +366,7 @@ background-image: linear-gradient(
           align-items: center;
           gap: 20px;
           padding-right: 5%;
-          transform: rotate(-12deg) scale(1.3);
+          transform: scale(1.3);
           transform-origin: center center;
           z-index: 1;
         }
@@ -399,8 +410,8 @@ background-image: linear-gradient(
         /* Large screens */
         @media (min-width: 1600px) {
           .image-columns-wrapper {
-            gap: 24px;
-            transform: rotate(-12deg) scale(1.4);
+            gap: 12px;
+            transform: scale(1.4);
           }
 
           .image-column {
@@ -410,20 +421,36 @@ background-image: linear-gradient(
           .image-track img {
             height: 220px;
           }
+           
         }
 
         /* Tablet */
-        @media (max-width: 1024px) {
+        @media (max-width: 1600px) {
           .text-contain {
-            max-width: 400px;
+          margin-top: 30%;
+            max-width: 850px;
             margin-left: 5%;
-            height: 55vh;
+            height:  60vh;
+            background: linear-gradient(180deg,
+              rgba(10, 10, 15, 0.95) 0%,
+              rgba(10, 10, 15, 0.85) 100%);
+            border-radius: 16px 16px 0 0;
+            backdrop-filter: blur(10px);
+          }
+
+          .text-contain h1 {
+            font-size: 1.75rem;
+          }
+
+          .text-contain p {
+            font-size: 0.95rem;
+            line-height: 1.75;
           }
 
           .image-columns-wrapper {
             gap: 16px;
             padding-right: 0;
-            transform: rotate(-12deg) scale(1.1);
+            transform: scale(1.1);
           }
 
           .image-column {
@@ -471,12 +498,12 @@ background-image: linear-gradient(
           }
 
           .text-contain h1 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 1rem;
           }
 
           .text-contain p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.7;
             margin-bottom: 1rem;
           }
@@ -487,14 +514,14 @@ background-image: linear-gradient(
             top: 0;
             right: 0%;
             bottom: auto;
-            height: 70vh;
-            padding-right: 0;
-            transform: rotate(-10deg) scale(1);
+            height: 40vh;
+            padding-right: 10%;
+            transform:scale(1);
             gap: 12px;
           }
 
           .image-column {
-            height: 100vh;
+            height: 80vh;
             width: 120px;
             border-radius: 12px;
           }
@@ -512,12 +539,22 @@ background-image: linear-gradient(
             transform: scale(0.55);
             z-index: 15;
           }
+            .orbit-mobile{
+              display: block;
+              top: -5%;
+            left: 80%;
+            transform: scale(0.5);
+            z-index: 15;
+            
+              
+              }
 
           .orbit-container {
             top: 2%;
             left: 2%;
             transform: scale(0.5);
             z-index: 15;
+            display: none;
           }
         }
 
@@ -534,9 +571,20 @@ background-image: linear-gradient(
             padding: 1rem 0.75rem;
           }
 
+          .text-contain h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+          }
+
+          .text-contain p {
+            font-size: 0.85rem;
+            line-height: 1.65;
+            margin-bottom: 0.75rem;
+          }
+
           .image-columns-wrapper {
             right: 0%;
-            transform: rotate(-8deg) scale(0.9);
+            transform: scale(0.9);
             gap: 10px;
           }
 
@@ -552,8 +600,16 @@ background-image: linear-gradient(
             transform: scale(0.45);
           }
 
+          .orbit-mobile{
+           transform: scale(0.4);
+            display:none;
+         
+            
+          }
+
           .orbit-container {
             transform: scale(0.4);
+            display:none;
           }
 
           .orbit-ring,
@@ -585,10 +641,9 @@ background-image: linear-gradient(
 
         <div
           onClick={handleViewCV}
-          className="icon-container orbit-container mt-4 cursor-pointer z-50"
+          className="icon-container orbit-container mt-4 cursor-pointer z-100"
         >
           <div className="orbit-glow" />
-          <div className="orbit-ring" />
           <div className="orbit-dots">
             <span></span>
             <span></span>
@@ -652,6 +707,55 @@ background-image: linear-gradient(
                 Atrás
               </p>
             </Link>
+
+            <div
+              onClick={handleViewCV}
+              className="orbit-mobile icon-container  mt-4 cursor-pointer z-100"
+            >
+              <div className="orbit-glow" />
+              <div className="orbit-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <img
+                src={OrbitIcon}
+                alt=""
+                className="floating-orbit"
+                aria-hidden="true"
+              />
+              <div className="justify-center items-center flex-row ">
+                <p
+                  className="mr-4 md:mr-0cursor-pointer hover:font-bold text-4xl md:text-sm"
+                  style={{
+                    fontFamily: "'Space Mono', monospace",
+
+                    letterSpacing: "0.2em",
+                    color: "#71E300",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+                  }}
+                >
+                  DESCARGA
+                </p>
+                <p
+                  className="cursor-pointer hover:font-bold text-4xl md:text-sm"
+                  style={{
+                    fontFamily: "'Space Mono', monospace",
+
+                    letterSpacing: "0.2em",
+                    color: "#71E300",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+                  }}
+                >
+                  MI CV
+                </p>
+              </div>
+            </div>
           </div>
           <h2
             style={{
@@ -760,6 +864,7 @@ background-image: linear-gradient(
             Si te interesa colaborar o simplemente compartir ideas,{" "}
             <mark className="text-highlight">escríbeme</mark>.
           </p>
+
         </div>
 
         {/* Galería de imágenes - Full height */}
