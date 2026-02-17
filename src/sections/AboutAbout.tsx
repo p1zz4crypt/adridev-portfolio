@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import AboutSection from "./AboutSection";
+
 import Img1 from "../assets/img/about/1.jpeg";
 import Img2 from "../assets/img/about/2.jpeg";
 import Img3 from "../assets/img/about/3.jpeg";
@@ -180,8 +183,8 @@ display:none;
       }
 
         .orbit-container {
-          top: 8%;
-          left: 3%;
+          top: 80%;
+          left: 5%;
           pointer-events: auto;
           cursor: pointer !important;
       
@@ -295,7 +298,7 @@ display:none;
         .text-contain {
           position: relative;
           z-index: 5;
-          max-width: 700px;
+          max-width: 70%;
           height: 60vh;
           overflow-y: auto;
           padding: 2rem;
@@ -327,7 +330,7 @@ display:none;
         }
 
         .text-contain p {
-          font-size: clamp(0.85rem, 0.4vw + 0.7rem, 1.15rem);
+          font-size: clamp(1rem, 0.8vw + 1rem, 1.15rem);
           line-height: 1.8;
           margin-bottom: 1.25rem;
           color: rgba(255, 255, 255, 0.65);
@@ -356,74 +359,7 @@ background-image: linear-gradient(
           background-size: 100% 100%;
         }
 
-        /* Image Columns - Full height */
-        .image-columns-wrapper {
-          position: absolute;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          padding-right: 5%;
-          transform: scale(1.3);
-          transform-origin: center center;
-          z-index: 1;
-        }
-
-        .image-column {
-          height: 140vh;
-          width: 200px;
-          overflow: hidden;
-          border-radius: 16px;
-        }
-
-        .image-track {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .image-track img {
-          width: 100%;
-          height: 200px;
-          object-fit: cover;
-        }
-
-        .image-track-up {
-          animation: scrollUp 14s linear infinite;
-        }
-
-        .image-track-down {
-          animation: scrollDown 14s linear infinite;
-        }
-
-        @keyframes scrollUp {
-          from { transform: translateY(0); }
-          to { transform: translateY(-50%); }
-        }
-
-        @keyframes scrollDown {
-          from { transform: translateY(-50%); }
-          to { transform: translateY(0); }
-        }
-
-        /* Large screens */
-        @media (min-width: 1600px) {
-          .image-columns-wrapper {
-            gap: 12px;
-            transform: scale(1.4);
-          }
-
-          .image-column {
-            width: 220px;
-          }
-
-          .image-track img {
-            height: 220px;
-          }
-           
-        }
-
+      
         /* Tablet */
         @media (max-width: 1600px) {
           .text-contain {
@@ -486,8 +422,8 @@ background-image: linear-gradient(
           .text-contain {
             max-width: 100%;
             width: calc(100% - 2rem);
-            height: 45vh;
-            margin: 0 1rem;
+            height: 50vh;
+            margin: 2rem 1rem;
             padding: 1.5rem 1rem;
             z-index: 10;
             background: linear-gradient(180deg, 
@@ -567,8 +503,9 @@ background-image: linear-gradient(
           .text-contain {
             height: 50vh;
             width: calc(100% - 1rem);
-            margin: 0 0.5rem;
+            margin: 2rem 0.5rem 0 0.5rem;
             padding: 1rem 0.75rem;
+           
           }
 
           .text-contain h1 {
@@ -619,78 +556,65 @@ background-image: linear-gradient(
         }
       `}</style>
 
-      <section className="about-section">
-        {/* Rocket con adornos */}
-        <div className="icon-container rocket-container mt-4">
-          <div className="rocket-glow" />
-          <div className="rocket-trail" />
-          <div className="rocket-particles">
-            <span></span>
-            <span></span>
-            <span></span>
+      <section className="about-section flex-col">
+        <AboutSection/>
+
+<div className="flex justify-center w-full">
+   <div
+            onClick={handleViewCV}
+            className="icon-container orbit-container mt-4 cursor-pointer z-100"
+          >
+            <div className="orbit-glow" />
+            <div className="orbit-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <img
+              src={OrbitIcon}
+              alt=""
+              className="floating-orbit"
+              aria-hidden="true"
+            />
+            <div className="flex flex-col items-center ">
+              <p
+                className="cursor-pointer hover:font-bold text-4xl md:text-sm"
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+
+                  letterSpacing: "0.2em",
+                  color: "#71E300",
+                  textTransform: "uppercase",
+                  whiteSpace: "nowrap",
+                  textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+                }}
+              >
+                DESCARGA
+              </p>
+              <p
+                className="cursor-pointer hover:font-bold text-4xl md:text-sm"
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+
+                  letterSpacing: "0.2em",
+                  color: "#71E300",
+                  textTransform: "uppercase",
+                  whiteSpace: "nowrap",
+                  textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
+                }}
+              >
+                MI CV
+              </p>
+            </div>
           </div>
-          <img
-            src={RocketIcon}
-            alt=""
-            className="floating-rocket"
-            aria-hidden="true"
-          />
-        </div>
 
-        {/* Orbit con adornos */}
-
-        <div
-          onClick={handleViewCV}
-          className="icon-container orbit-container mt-4 cursor-pointer z-100"
-        >
-          <div className="orbit-glow" />
-          <div className="orbit-dots">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <img
-            src={OrbitIcon}
-            alt=""
-            className="floating-orbit"
-            aria-hidden="true"
-          />
-          <div className="flex flex-col items-center ">
-            <p
-              className="cursor-pointer hover:font-bold text-4xl md:text-sm"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-
-                letterSpacing: "0.2em",
-                color: "#71E300",
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-                textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
-              }}
-            >
-              DESCARGA
-            </p>
-            <p
-              className="cursor-pointer hover:font-bold text-4xl md:text-sm"
-              style={{
-                fontFamily: "'Space Mono', monospace",
-
-                letterSpacing: "0.2em",
-                color: "#71E300",
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-                textShadow: "0 0 10px rgba(236, 72, 153, 0.8)",
-              }}
-            >
-              MI CV
-            </p>
-          </div>
-        </div>
 
         {/* Texto con scroll */}
-        <div className="text-contain" ref={textContainRef}>
-          <div className="w-1/3 text-left md:text-right md:top-36 top-0  block md:fixed">
+        <div className="text-contain mt-5" ref={textContainRef}>
+
+         
+          <div className="text-left md:text-right md:top-6 top-0  block md:fixed">
             <Link to={"/"}>
               <p
                 className="cursor-pointer hover:font-bold"
@@ -866,30 +790,12 @@ background-image: linear-gradient(
           </p>
 
         </div>
+</div>
+        {/* Orbit con adornos */}
 
-        {/* Galería de imágenes - Full height */}
-        <div className="image-columns-wrapper">
-          {columnsData.map((column, columnIndex) => (
-            <div key={columnIndex} className="image-column">
-              <div className={`image-track image-track-${column.direction}`}>
-                {column.images.map((src, imgIndex) => (
-                  <img
-                    key={`original-${imgIndex}`}
-                    src={src}
-                    alt={`Image ${columnIndex * 4 + imgIndex + 1}`}
-                  />
-                ))}
-                {column.images.map((src, imgIndex) => (
-                  <img
-                    key={`duplicate-${imgIndex}`}
-                    src={src}
-                    alt={`Image ${columnIndex * 4 + imgIndex + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+
+
+
       </section>
     </>
   );
