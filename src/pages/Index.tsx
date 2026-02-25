@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "@/components/NavBar";
 
-import AboutSection from "@/sections/AboutSection";
+
 
 import ContactSection from "@/sections/ContactSection";
 import Footer from "@/components/Footer";

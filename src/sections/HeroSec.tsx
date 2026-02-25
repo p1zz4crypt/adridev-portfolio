@@ -525,10 +525,10 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
               fontSize: 'clamp(2.5rem, 8vw, 5rem)',
               fontWeight: 900,
               letterSpacing: '0.1em',
-              background: 'linear-gradient(135deg, #71E300 0%, #71E300 50%, #71E300 100%)',
+              background: 'transparent',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
-              color: 'transparent',
+              color: '#EC4899',
               margin: 0,
               lineHeight: 1.1,
             }}
@@ -538,11 +538,11 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
           <div className='flex justify-around' >
             <Link to={'/projects'}>
               <p
-              className='text-white hover:font-bold hover:text-[#71E300]'
+              className='text-white hover:font-bold hover:text-pink-500 text-xl'
                 style={{
                   cursor: 'pointer',
                   fontFamily: "'Space Mono', monospace",
-                  fontSize: 'clamp(0.8rem, 2vw, 1rem)',
+                  
                   
                   marginTop: '1.5rem',
                   maxWidth: '500px',
@@ -554,11 +554,11 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
             </Link>
             <Link to={'/about'}>
               <p
-                className='text-white hover:font-bold hover:text-[#71E300]'
+                className='text-white hover:font-bold hover:text-pink-500 text-xl'
                 style={{
                   cursor: 'pointer',
                   fontFamily: "'Space Mono', monospace",
-                  fontSize: 'clamp(0.8rem, 2vw, 1rem)',
+          
           
                   marginTop: '1.5rem',
                   maxWidth: '500px',
@@ -573,11 +573,11 @@ const ScrollTransition: React.FC<ScrollTransitionProps> = ({ children, modelUrl 
               onClick={onContactClick}
             >
               <p
-                className='text-white hover:font-bold hover:text-[#71E300]'
+                className='text-white hover:font-bold hover:text-pink-500 text-xl'
                 style={{
                   cursor: 'pointer',
                   fontFamily: "'Space Mono', monospace",
-                  fontSize: 'clamp(0.8rem, 2vw, 1rem)',
+
                   marginTop: '1.5rem',
                   maxWidth: '500px',
                   lineHeight: 1.6

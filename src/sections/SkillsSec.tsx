@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectModal from "@/components/ProjectModal";
-import NebulaBackground from "./NebulaBackground";
+import Nebula from "../assets/Distance-Nebulae.png"
 
 // ============================================
 // IMÁGENES - Iconos de cada Skill (portada)
@@ -538,13 +538,13 @@ const ProjectsNew: React.FC = () => {
         image="/public/ad3.png"
       />
       {/* Fondo de nebulosas */}
-      <NebulaBackground />
+
 
       <section
         id="skills"
         ref={sectionRef}
         className="relative min-h-[100vh] py-20"
-        style={{ zIndex: 1, position: "relative" }}
+        style={{ zIndex: 1, position: "relative", backgroundImage: `url(${Nebula})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div
           ref={containerRef}
@@ -559,10 +559,10 @@ const ProjectsNew: React.FC = () => {
                 fontWeight: 900,
                 letterSpacing: "0.1em",
                 background:
-                  "linear-gradient(135deg, #71E300 0%, #71E300 50%, #71E300 100%)",
+                  "transparent)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
-                color: "transparent",
+                color: "#EC4899",
                 margin: 0,
                 lineHeight: 1.1,
               }}
@@ -622,7 +622,7 @@ const ProjectsNew: React.FC = () => {
                       alt={skill.title}
                       className="w-24 md:w-40 lg:w-56 opacity-100 group-hover:opacity-0 transition-opacity duration-300"
                     />
-                    <h3 className="text-xl bg-black/70 px-2 backdrop-blur-md font-bold mb-6 text-[#71E300] group-hover:opacity-0 group-hover:text-white  transition-all duration-100">
+                    <h3 className="text-xl bg-black/10 px-2 backdrop-blur-md font-bold mb-6 text-[#EC4899] group-hover:opacity-0 group-hover:text-white  transition-all duration-100">
                       {skill.title}
                     </h3>
                   </div>
@@ -630,7 +630,7 @@ const ProjectsNew: React.FC = () => {
                   {/* Contenido en hover (descripción) */}
                   <div className="absolute inset-0 flex flex-col justify-end p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-saturate-50">
                     <h3 className="text-xl font-bold mb-3">{skill.title}</h3>
-                    <p className="text-sm text-gray-200 line-clamp-3">
+                    <p className="text-md text-gray-200 line-clamp-3">
                       {skill.description}
                     </p>
                   </div>

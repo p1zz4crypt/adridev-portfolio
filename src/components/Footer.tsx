@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heart, Mail, Phone, MapPin } from 'lucide-react';
 import { motion } from "framer-motion";
-import Gif from '../assets/footer_image.jpeg';
+import Gif from '../assets/img/avatar.png';
 
 const Footer: React.FC = () => {
   const socialLinks = [
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
       <div className="flex  items-center justify-center mb-4">
       {/* Animated GIF background */}
       <div className='mr-6 '>
-       <img src={Gif} alt="Animated footer background" className="w-24 h-full object-cover" />
+       <img src={Gif} alt="Animated footer background" className="w-80 h-full object-cover" />
       </div>
         
         {/* Main content - responsive flex */}
@@ -90,16 +90,16 @@ const Footer: React.FC = () => {
         >
           
           {/* Contact info */}
-          <div className="flex flex-col flex-wrap items-cstart justify-center md:justify-start gap-3 md:gap-5 text-sm text-white/80">
+          <div className="flex flex-col flex-wrap items-cstart justify-center md:justify-start gap-3 md:gap-6 text-sm text-white/80">
             {contactInfo.map((item, index) => (
-              <div key={index} className="flex items-center gap-1.5">
-                <item.icon className="h-4 w-4 text-white/60" />
+              <div key={index} className="flex items-center gap-4 cursor-pointer">
+                <item.icon className="h-6 w-6 text-white/60 cursor-pointer" />
                 {item.href ? (
                   <a
                     href={item.href}
                     target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="hover:text-white transition-colors"
+                    className="hover:text-white transition-colors text-xl cursor-pointer"
                   >
                     {item.text}
                   </a>
@@ -111,17 +111,17 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Divider - visible only on md+ */}
-          <div className="hidden md:block w-px h-6 bg-white/40" />
+          <div className="hidden md:block w-px h-8 bg-white/40" />
 
           {/* Social links */}
-          <div className="flex  items-center gap-4 w-full md:w-auto">
+          <div className="flex  items-center gap-4 w-full md:w-auto cursor-pointer">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                className="cursor-pointer p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all"
                 aria-label={social.name}
               >
                 {social.icon}
@@ -137,7 +137,7 @@ const Footer: React.FC = () => {
         {/* Copyright */}
         <p className="text-center text-xs text-white/60 flex items-center justify-center gap-1">
           © {new Date().getFullYear()} • Hecho con
-          <Heart className="h-3 w-3 text-[#71E300] fill-[#71E300]" />
+          <Heart className="h-3 w-3 text-pink-500 fill-pink-500" />
           
         </p>
       </div>

@@ -272,7 +272,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-200 text-sm md:text-base lg:text-lg leading-relaxed mb-4">
+                    <p className="text-gray-200 text-lg md:text-2xl  leading-relaxed mb-4">
                         {project.description}
                     </p>
 
@@ -281,13 +281,13 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3">
                             <div className="flex items-center gap-2 flex-shrink-0">
                                 <img src={Stack} alt="stack" className="w-8 md:w-10" />
-                                <p className="text-gray-200 text-sm">Stack:</p>
+                                <p className="text-gray-200 text-lg">Stack:</p>
                             </div>
                             <div className="flex flex-wrap gap-1.5 md:gap-2">
                                 {project.tags.map((tag, idx) => (
                                     <span
                                         key={idx}
-                                        className="text-xs md:text-sm px-2 md:px-4 py-1 text-white transition-all duration-300"
+                                        className="text-lg md:text-lg px-2 md:px-4 py-1 text-white transition-all duration-300"
                                         style={{ backgroundColor: `${projectColor}20` }}
                                     >
                                         {tag}
@@ -336,7 +336,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                                         </div>
 
                                         {/* Descripción de imagen */}
-                                        <p className="text-center text-gray-300 text-sm md:text-base mt-4 max-w-lg leading-relaxed px-4">
+                                        <p className="text-center text-gray-300 text-md md:text-lg mt-4 max-w-lg leading-relaxed px-4">
                                             {project.images[currentImageIndex]?.description || ''}
                                         </p>
                                     </div>
