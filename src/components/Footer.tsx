@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Mail, Phone, MapPin } from 'lucide-react';
+import { Heart, Mail, Phone, MapPin, FileUser } from 'lucide-react';
 import { motion } from "framer-motion";
 import Gif from '../assets/img/avatar.png';
 
@@ -61,8 +61,13 @@ const Footer: React.FC = () => {
     }
   ];
 
+  const handleViewCV = () => {
+    const pdfUrl = "/2026-CV-AdrianaR.pdf";
+    window.open(pdfUrl, "_blank");
+  };
+
   return (
-    <footer 
+    <footer
       className="relative py-6 px-4 md:px-8"
       style={{
         background: 'rgba(255, 255, 255, 0.05)',
@@ -74,71 +79,77 @@ const Footer: React.FC = () => {
     >
       <div className="container mx-auto w-full">
 
-      <div className="flex  items-center justify-center mb-4">
-      {/* Animated GIF background */}
-      <div className='mr-6 '>
-       <img src={Gif} alt="Animated footer background" className="w-80 h-full object-cover" />
-      </div>
-        
-        {/* Main content - responsive flex */}
-        <motion.div 
-          className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          
-          {/* Contact info */}
-          <div className="flex flex-col flex-wrap items-cstart justify-center md:justify-start gap-3 md:gap-6 text-sm text-white/80">
-            {contactInfo.map((item, index) => (
-              <div key={index} className="flex items-center gap-4 cursor-pointer">
-                <item.icon className="h-6 w-6 text-white/60 cursor-pointer" />
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="hover:text-white transition-colors text-xl cursor-pointer"
-                  >
-                    {item.text}
-                  </a>
-                ) : (
-                  <span>{item.text}</span>
-                )}
+        <div className="flex  items-center justify-center mb-4">
+          {/* Animated GIF background */}
+          <div className='mr-6 '>
+            <img src={Gif} alt="Animated footer background" className="w-80 h-full object-cover" />
+          </div>
+
+          {/* Main content - responsive flex */}
+          <motion.div
+            className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+
+            {/* Contact info */}
+            <div className="flex flex-col flex-wrap items-cstart justify-center md:justify-start gap-3 md:gap-6 text-sm text-white/80">
+              {contactInfo.map((item, index) => (
+                <div key={index} className="flex items-center gap-4 cursor-pointer">
+                  <item.icon className="h-6 w-6 text-white/60 cursor-pointer" />
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith('http') ? '_blank' : undefined}
+                      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="hover:text-white transition-colors text-xl cursor-pointer"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span>{item.text}</span>
+                  )}
+                </div>
+              ))}
+              <div className="flex items-center gap-4 cursor-pointer group-hover:text-pink-500" onClick={handleViewCV}>
+                <FileUser className="h-6 w-6 text-white/60 cursor-pointer " />
+                <a className=' transition-colors text-xl cursor-pointer hover:font-bold hover:underline'>
+                  Descarga mi CV
+                </a>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Divider - visible only on md+ */}
-          <div className="hidden md:block w-px h-8 bg-white/40" />
+            {/* Divider - visible only on md+ */}
+            <div className="hidden md:block w-px h-8 bg-white/40" />
 
-          {/* Social links */}
-          <div className="flex  items-center gap-4 w-full md:w-auto cursor-pointer">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-pointer p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all"
-                aria-label={social.name}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-        </motion.div>
+            {/* Social links */}
+            <div className="flex  items-center gap-4 w-full md:w-auto cursor-pointer">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                  aria-label={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </motion.div>
 
 
-      </div>
+        </div>
         {/* Divider line */}
         <div className="w-full h-px bg-white/10 my-4" />
         {/* Copyright */}
         <p className="text-center text-xs text-white/60 flex items-center justify-center gap-1">
           © {new Date().getFullYear()} • Hecho con
           <Heart className="h-3 w-3 text-pink-500 fill-pink-500" />
-          
+
         </p>
       </div>
     </footer>

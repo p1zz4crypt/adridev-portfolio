@@ -473,8 +473,7 @@ const ProjectsNew: React.FC = () => {
             {
               opacity: 1,
               y: 0,
-              duration: 0.8,
-              ease: "power2.out",
+              duration: 0.8,            ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
@@ -514,10 +513,10 @@ const ProjectsNew: React.FC = () => {
           const images = box.querySelectorAll("img");
           images.forEach((img) => {
             gsap.to(img, {
-              rotation: 360,
-              repeat: -1,
-              ease: "none",
-              duration: 8,
+              rotation: 10,
+              repeat: 0,
+              ease: "sine.inOut",
+              duration: 0.4,
             });
           });
         }
@@ -548,7 +547,7 @@ const ProjectsNew: React.FC = () => {
       >
         <div
           ref={containerRef}
-          className="flex flex-col items-center justify-center gap-12 px-4"
+          className="flex flex-col items-center justify-center gap-12 px-4 pb-16"
         >
           {/* Heading */}
           <div className="w-full flex justify-around my-8">
@@ -620,7 +619,7 @@ const ProjectsNew: React.FC = () => {
                     <img
                       src={skill.image}
                       alt={skill.title}
-                      className="w-24 md:w-40 lg:w-56 opacity-100 group-hover:opacity-0 transition-opacity duration-300"
+                      className="w-24 md:w-36 lg:w-60 opacity-100 group-hover:opacity-0 transition-opacity duration-300"
                     />
                     <h3 className="text-xl bg-black/10 px-2 backdrop-blur-md font-bold mb-6 text-[#EC4899] group-hover:opacity-0 group-hover:text-white  transition-all duration-100">
                       {skill.title}
