@@ -272,7 +272,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-200 text-lg md:text-2xl  leading-relaxed mb-4">
+                    <p className="text-gray-200 text-xl md:text-2xl  leading-relaxed mb-4">
                         {project.description}
                     </p>
 
@@ -280,8 +280,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                     {project.tags && project.tags.length > 0 && (
                         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3">
                             <div className="flex items-center gap-2 flex-shrink-0">
-                                <img src={Stack} alt="stack" className="w-8 md:w-10" />
-                                <p className="text-gray-200 text-lg">Stack:</p>
+                                <img src={Stack} alt="stack" className="w-12 md:w-16" />
+                                <p className="text-gray-200 text-xl md:text-2xl">Stack:</p>
                             </div>
                             <div className="flex flex-wrap gap-1.5 md:gap-2">
                                 {project.tags.map((tag, idx) => (
@@ -322,14 +322,14 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                                                 <video
                                                     src={image.url}
                                                     controls
-                                                    className="w-full max-w-xs md:max-w-md lg:max-w-lg h-auto object-contain max-h-[35vh] md:max-h-[50vh] transition-transform duration-300 rounded-lg"
+                                                    className="w-full max-w-lg  h-auto object-contain max-h-[35vh] md:max-h-[50vh] transition-transform duration-300 rounded-lg"
                                                     playsInline
                                                 />
                                             ) : (
                                                 <img
                                                     src={image.url}
                                                     alt={`Project ${index + 1}`}
-                                                    className="w-full h-auto object-contain max-h-[35vh] md:max-h-[55vh] transition-transform duration-300 rounded-lg"
+                                                    className="w-full h-auto object-contain max-h-[95vh] md:max-h-[55vh] transition-transform duration-300 rounded-lg"
                                                     loading="lazy"
                                                 />
                                             )}
