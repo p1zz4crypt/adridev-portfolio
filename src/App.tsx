@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import ProjectsSection from './sections/SkillsSec';
 import AboutAbout from './sections/AboutAbout';
+import Chatbot from "./sections/Chatbot";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
             <Route path="/projects" element={<ProjectsSection />} />
             <Route path="/about" element={<AboutAbout />} />
+            <Route path="/contact" element={<Chatbot />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
